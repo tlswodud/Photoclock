@@ -1,0 +1,135 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="clockapp.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="backgroundimg" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FormWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">464</Value>
+    </Setting>
+    <Setting Name="FormHeight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">252</Value>
+    </Setting>
+    <Setting Name="bordercolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Gray</Value>
+    </Setting>
+    <Setting Name="panelcolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightGray</Value>
+    </Setting>
+    <Setting Name="label1color" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="label3color" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="form2line" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="backgroundimg2" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FormWidth2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">464</Value>
+    </Setting>
+    <Setting Name="FormHeight2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">252</Value>
+    </Setting>
+    <Setting Name="bordercolor2" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Gray</Value>
+    </Setting>
+    <Setting Name="panelcolor2" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightGray</Value>
+    </Setting>
+    <Setting Name="label1color2" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="label3color2" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="form3lone" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="backgroundimg3" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="bordercolor3" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Gray</Value>
+    </Setting>
+    <Setting Name="panelcolor3" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightGray</Value>
+    </Setting>
+    <Setting Name="label1color3" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="label4color3" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="btnshow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="btnshow2" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="form1location" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">5, 5</Value>
+    </Setting>
+    <Setting Name="form2location" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">5, 5</Value>
+    </Setting>
+    <Setting Name="form3location" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">5, 5</Value>
+    </Setting>
+    <Setting Name="form1label1font" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">경기천년제목V Bold, 30pt, style=Bold</Value>
+    </Setting>
+    <Setting Name="form1label3font" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">경기천년제목V Bold, 15.75pt, style=Bold</Value>
+    </Setting>
+    <Setting Name="form2label1font" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">경기천년제목V Bold, 30pt, style=Bold</Value>
+    </Setting>
+    <Setting Name="form2label3font" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">경기천년제목V Bold, 15.75pt, style=Bold</Value>
+    </Setting>
+    <Setting Name="opa1" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="opa2" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="opa3" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="label1location" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">8, 19</Value>
+    </Setting>
+    <Setting Name="label3location" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">12, 73</Value>
+    </Setting>
+    <Setting Name="label1location2" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">8, 19</Value>
+    </Setting>
+    <Setting Name="label3location2" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">12, 73</Value>
+    </Setting>
+    <Setting Name="form3label1font" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">경기천년제목V Bold, 24pt, style=Bold</Value>
+    </Setting>
+    <Setting Name="track1" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightGray</Value>
+    </Setting>
+    <Setting Name="track2" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightGray</Value>
+    </Setting>
+    <Setting Name="track3" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightGray</Value>
+    </Setting>
+    <Setting Name="track1visable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="track2visable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

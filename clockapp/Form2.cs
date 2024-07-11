@@ -3,8 +3,11 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Controls.Ribbon;
+using System.Windows.Documents;
+using System.Windows.Forms;
 using calendar;
 using clockapp;
+using FontAwesome.Sharp;
 
 namespace clockapp
 {
@@ -22,14 +25,16 @@ namespace clockapp
         public datageteventhadler Datasendevent;
         int cnt = 0;
         int colorcnt = 0;
-
-
+        string BackgroundfilePath;
+        bool DoubleClickcheck = false;
+        private Point startPoint;
+        private Point startPoint3;
 
         public Form2()
         {
 
             InitializeComponent();
-            
+
             label1.BackColor = Color.Transparent;
             label3.BackColor = Color.Transparent;
             this.TopMost = true;
@@ -52,16 +57,6 @@ namespace clockapp
         // hwind 같은 경우는 윈도우의 핸들을 나타내는 매개변수
         // wMsg 는 전송할 아이디 매개변수고
         // wparam iparam 은 추가 데이터 나타내는 매개변수
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void ontimeevent(object sender, EventArgs e)
-        {
-
-        }
-
 
 
         private void panel2_MouseDown(object sender, MouseEventArgs e) // 마우스 다운을 통해 핸들기능 추가
@@ -142,12 +137,7 @@ namespace clockapp
             }
             if (m.Msg == WM_SYSCOMMAND)
             {
-                /// <see cref="https://docs.microsoft.com/en-us/windows/win32/menurc/wm-syscommand"/>
-                /// Quote:
-                /// In WM_SYSCOMMAND messages, the four low - order bits of the wParam parameter 
-                /// are used internally by the system.To obtain the correct result when testing 
-                /// the value of wParam, an application must combine the value 0xFFF0 with the 
-                /// wParam value by using the bitwise AND operator.
+
                 int wParam = (m.WParam.ToInt32() & 0xFFF0);
                 if (wParam == SC_MINIMIZE)  //Before
                     formSize = this.ClientSize;
@@ -157,15 +147,72 @@ namespace clockapp
             base.WndProc(ref m);
         }
 
-
-        private void iconButton8_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             stopwatch = new Stopwatch();
+
+            this.Width = Properties.Settings.Default.FormWidth2;
+            this.Height = Properties.Settings.Default.FormHeight2;
+            BackgroundfilePath = Properties.Settings.Default.backgroundimg2;
+
+            this.BackColor = Properties.Settings.Default.bordercolor2;
+            this.panel3.BackColor = Properties.Settings.Default.panelcolor2;
+            this.panel5.BackColor = Properties.Settings.Default.panelcolor2;
+            label1.ForeColor = Properties.Settings.Default.label1color2;
+            label3.ForeColor = Properties.Settings.Default.label3color2;
+            this.Location = Properties.Settings.Default.form2location;
+
+            label1.Font = Properties.Settings.Default.form2label1font;
+            label3.Font = Properties.Settings.Default.form2label3font;
+            label1.Location = Properties.Settings.Default.label1location2;
+            label3.Location = Properties.Settings.Default.label3location2;
+
+            trackBar2.BackColor = Properties.Settings.Default.track2;
+            trackBar2.Visible = Properties.Settings.Default.track2visable;
+
+            this.Opacity = Properties.Settings.Default.opa2;
+
+            if (System.IO.File.Exists(BackgroundfilePath) && BackgroundfilePath != "")
+            {
+                pictureBox2.Visible = true;
+
+                label3.Parent = pictureBox2;
+                label1.Parent = pictureBox2;
+
+                pictureBox2.Image = Bitmap.FromFile(BackgroundfilePath);
+            }
+            if (Properties.Settings.Default.btnshow2 == true)
+            {
+                panel1.Width = 37;
+                panel3.Width = 37;
+                pictureBox1.Visible = false;
+                btnmenu.Dock = DockStyle.Top;
+                foreach (Button menubtn in this.panel3.Controls.OfType<Button>())
+                {
+                    menubtn.Text = "";
+                    menubtn.ImageAlign = ContentAlignment.MiddleLeft;
+                    menubtn.Padding = new Padding(0);
+
+                }
+                timebutton.Location = new Point(0, 45);
+                trackbutton.Location = new Point(0, 77); 
+                optionbutton.Location = new Point(0, 107);
+
+            }
+            else
+            {
+                panel1.Width = 105;
+                panel3.Width = 105;
+                pictureBox1.Visible = true;
+                btnmenu.Dock = DockStyle.None;
+                foreach (Button menubtn in this.panel3.Controls.OfType<Button>())
+                {
+                    menubtn.Text = "  " + menubtn.Tag.ToString();
+                    menubtn.ImageAlign = ContentAlignment.MiddleLeft;
+                    menubtn.Padding = new Padding(0, 0, 0, 0);
+
+                }
+            }
 
         }
 
@@ -229,7 +276,24 @@ namespace clockapp
             if (panel5.Visible == true)
             {
                 optionMenucollapso();
+                timebutton.Location = new Point(0, 80);
+                trackbutton.Location = new Point(0, 112); 
+                optionbutton.Location = new Point(0, 144);
+
             }
+            if (panel3.Width == 37)
+            {
+                timebutton.Location = new Point(0, 45);
+                trackbutton.Location = new Point(0, 77);
+                optionbutton.Location = new Point(0, 107);
+            }
+            else
+            {
+                timebutton.Location = new Point(0, 80);
+                trackbutton.Location = new Point(0, 112);
+                optionbutton.Location = new Point(0, 144);
+            }
+
 
         }
 
@@ -237,15 +301,15 @@ namespace clockapp
         {
             if (this.panel1.Width > 104)
             {
-                panel1.Width = 40;
-                panel3.Width = 40;
+                panel1.Width = 37;
+                panel3.Width = 37;
                 pictureBox1.Visible = false;
                 btnmenu.Dock = DockStyle.Top;
-                foreach (Button btnmenu in this.panel3.Controls.OfType<Button>())
+                foreach (Button menubtn in this.panel3.Controls.OfType<Button>())
                 {
-                    btnmenu.Text = "";
-                    btnmenu.ImageAlign = ContentAlignment.MiddleLeft;
-                    btnmenu.Padding = new Padding(0);
+                    menubtn.Text = "";
+                    menubtn.ImageAlign = ContentAlignment.MiddleLeft;
+                    menubtn.Padding = new Padding(0, 0, 0, 0);
 
                 }
             }
@@ -256,22 +320,16 @@ namespace clockapp
                 panel3.Width = 105;
                 pictureBox1.Visible = true;
                 btnmenu.Dock = DockStyle.None;
-                foreach (Button btnmenu in this.panel3.Controls.OfType<Button>())
+                foreach (Button menubtn in this.panel3.Controls.OfType<Button>())
                 {
-                    btnmenu.Text = "  " + btnmenu.Tag.ToString();
-                    btnmenu.ImageAlign = ContentAlignment.MiddleLeft;
-                    btnmenu.Padding = new Padding(0, 0, 0, 0);
+                    menubtn.Text = "  " + menubtn.Tag.ToString();
+                    menubtn.ImageAlign = ContentAlignment.MiddleLeft;
+                    menubtn.Padding = new Padding(0, 0, 0, 0);
 
                 }
             }
 
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
 
 
         private void iconButton4_Click(object sender, EventArgs e)
@@ -302,6 +360,7 @@ namespace clockapp
                 trackbutton.IconChar = FontAwesome.Sharp.IconChar.Dove;
                 trackBar2.Visible = true;
             }
+            Properties.Settings.Default.track2visable = trackBar2.Visible;
         }
 
         private void trackBar2_ValueChanged(object sender, EventArgs e)
@@ -309,20 +368,6 @@ namespace clockapp
             this.Opacity = trackBar2.Value * 0.01;
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void optionbutton_MouseClick(object sender, MouseEventArgs e)
-        {
-
-        }
 
         private void optionbutton_Click(object sender, EventArgs e)
         {
@@ -340,98 +385,67 @@ namespace clockapp
 
         private void optionMenucollapso()
         {
-            if (this.panel1.Width == 40)
+            if (this.panel1.Width == 37)
             {
-                panel5.Width = 40;
-                foreach (Button btnmenu in this.panel5.Controls.OfType<Button>())
+                panel5.Width = 37;
+                foreach (Button menubtn in this.panel5.Controls.OfType<Button>())
                 {
-                    btnmenu.Text = "";
-                    btnmenu.ImageAlign = ContentAlignment.MiddleLeft;
-                    btnmenu.Padding = new Padding(0);
+                    menubtn.Text = "";
+                    menubtn.ImageAlign = ContentAlignment.MiddleLeft;
+                    menubtn.Padding = new Padding(0);
 
                 }
             }
             else
             {
                 panel5.Width = 105;
-                foreach (Button btnmenu in this.panel5.Controls.OfType<Button>())
+                foreach (Button menubtn in this.panel5.Controls.OfType<Button>())
                 {
-                    btnmenu.Text = "  " + btnmenu.Tag.ToString();
-                    btnmenu.ImageAlign = ContentAlignment.MiddleLeft;
-                    btnmenu.Padding = new Padding(0, 0, 0, 0);
+                    menubtn.Text = "  " + menubtn.Tag.ToString();
+                    menubtn.ImageAlign = ContentAlignment.MiddleLeft;
+                    menubtn.Padding = new Padding(0, 0, 0, 0);
                 }
             }
-        }
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
+             
         }
 
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void menuStrip1_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void iconButton4_Click_1(object sender, EventArgs e)
         {
+            if (this.TopMost == true)
+            {
+                this.TopMost = false;
+            }
+            else
+            {
+                this.TopMost = true;
 
+            }
         }
 
         private void sizebutton_Click(object sender, EventArgs e)
         {
 
-            cnt++;
+            label1.Font = new Font("경기천년제목V Bold", 30, FontStyle.Bold);
+            label3.Font = new Font("경기천년제목 Bold", 16, FontStyle.Bold);
+            textBox1.Font = new Font(textBox1.Font.FontFamily, 16);
 
-            if (cnt == 3)
-            {
-                cnt = 0;
-            }
+            label3.Location = new Point(12, 73);
+            label1.Location = new Point(8, 19);
+            trackBar2.BackColor = Color.LightGray;
+            label1.ForeColor = Color.Black;
+            label3.ForeColor = Color.Black;
 
-            if (cnt == 0)
-            {
-                label1.Font = new Font(label1.Font.FontFamily, 60);
-                label3.Font = new Font(label3.Font.FontFamily, 25);
-                trackBar2.Width = 180;
-                trackBar2.Location = new Point(236, 142);
-                label3.Location = new Point(28, 140);
-            }
-            else if (cnt == 1)
-            {
-                label1.Font = new Font(label1.Font.FontFamily, 40);
-                label3.Font = new Font(label3.Font.FontFamily, 20);
-                trackBar2.Width = 80;
-                trackBar2.Height = 25;
-                trackBar2.Location = new Point(179, 101);
-                label3.Location = new Point(17, 97);
-            }
-            else if (cnt == 2)
-            {
-                label1.Font = new Font(label1.Font.FontFamily, 90);
-                label3.Font = new Font(label3.Font.FontFamily, 30);
-                trackBar2.Width = 250;
-                trackBar2.Location = new Point(280, 170);//320
-                label3.Location = new Point(40, 170);
+            panel3.BackColor = Color.LightGray;
+            panel5.BackColor = Color.LightGray;
+            this.BackColor = Color.Gray;
+            panel2.BackgroundImage = null;
+            pictureBox2.Image = null;
+            label3.Text = "Clock";
 
-            }
-
+           
 
         }
-
         private void colorbutton_Click(object sender, EventArgs e)
         {
             colorcnt++;
@@ -446,12 +460,14 @@ namespace clockapp
                 panel3.BackColor = Color.Linen;
                 panel5.BackColor = Color.Linen;
                 this.BackColor = Color.LightPink;
+                trackBar2.BackColor = Color.LightPink;
             }
             else if (colorcnt == 1)
             {
                 panel3.BackColor = Color.LightSkyBlue;
                 panel5.BackColor = Color.LightSkyBlue;
                 this.BackColor = Color.DeepSkyBlue;
+                trackBar2.BackColor = Color.PaleTurquoise;
 
             }
             else if (colorcnt == 0)
@@ -460,12 +476,15 @@ namespace clockapp
                 panel5.BackColor = Color.LightGray;
                 this.BackColor = Color.Gray;
 
+                trackBar2.BackColor = Color.LightGray;
+
             }
 
         }
 
         private void timebutton_Click(object sender, EventArgs e)
-        {
+        {   
+            
             int x = 1;
             Datasendevent(x);
 
@@ -479,37 +498,286 @@ namespace clockapp
             textBox1.Size = label3.Size;
             textBox1.Text = label3.Text;
             textBox1.Font = label3.Font;
+            DoubleClickcheck = true;
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
+
             if (e.KeyCode == Keys.Enter)
             {
+                DoubleClickcheck = false;
                 label3.Text = textBox1.Text;
                 textBox1.Visible = false;
                 label3.Visible = true;
-
-                if (label3.Width == 0)
+                int i = 0, j = 0;
+                int poxx = 0;
+                while (label3.Text.Length > j) // 빈칸만 입력했을경우 이상해지는걸 방지하는것
                 {
-                    label3.Text = "                              ";
+                    if (label3.Text[i] == ' ') { i++; }
+
+                    else
+                    {
+                        poxx++;
+                        break;
+                    }
+                    j++;
+                }
+
+                if (label3.Text.Length == 0 || poxx == 0) // poxx 빈칸만 있을경우에 바꿔준것
+                {
+                    label3.Text = "                   ";
                 }
             }
+
             return;
 
         }
 
-    
-        //private void label1_SizeChanged(object sender, EventArgs e) 사이즈 
-        //{
-        //    Graphics g = label1.CreateGraphics();
-        //    SizeF textSize = g.MeasureString(label1.Text, label1.Font);
-        //    float scale = Math.Min(label1.Width / textSize.Width, label1.Height / textSize.Height);
-        //    float fontSize = label1.Font.Size * scale;
-        //    label1.Font = new Font(label1.Font.FontFamily, fontSize, label1.Font.Style)
+        private void label1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
 
-        //}
+                DialogResult result = this.color2.ShowDialog();
+                DialogResult result2 = fontDialog1.ShowDialog();
 
 
+                if (result == DialogResult.OK)
+                {
+                    // Set form background to the selected color.
+                    label1.ForeColor = color2.Color;
+                }
+
+
+                if (result2 == DialogResult.OK)
+                {
+                    // Set form background to the selected color.
+                    label1.Font = fontDialog1.Font;
+                }
+
+            }
+        }
+
+        private void label3_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+
+                DialogResult result = this.color2.ShowDialog();
+                DialogResult result2 = fontDialog1.ShowDialog();
+
+
+                if (result == DialogResult.OK)
+                {
+                    // Set form background to the selected color.
+                    label3.ForeColor = color2.Color;
+                }
+                if (result2 == DialogResult.OK)
+                {
+                    // Set form background to the selected color.
+                    label3.Font = fontDialog1.Font;
+                }
+            }
+        }
+
+        private void panel4_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
+
+            
+         
+        }
+
+        private void panel3_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
+
+            if (e.Button == MouseButtons.Right)
+            {
+                DialogResult result = this.color2.ShowDialog();
+
+
+
+                if (result == DialogResult.OK)
+                {
+                    // Set form background to the selected color.
+                    panel3.BackColor = color2.Color;
+                    panel5.BackColor = color2.Color;
+
+                }
+            }
+        }
+
+        private void panel4_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] filess = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+            if (filess.Length > 0 && File.Exists(filess[0]))
+            {
+                BackgroundfilePath = filess[0];
+
+                pictureBox2.Visible = true;
+
+                label3.Parent = pictureBox2;
+                label1.Parent = pictureBox2;
+
+                pictureBox2.Image = Bitmap.FromFile(BackgroundfilePath);
+
+            }
+
+        }
+
+        private void panel4_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private void panel2_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
+
+
+            if (e.Button == MouseButtons.Right)
+            {
+
+                DialogResult result = this.color2.ShowDialog();
+
+
+
+                if (result == DialogResult.OK)
+                {
+                    this.BackColor = color2.Color;
+                }
+            }
+        }
+        private void trackBar2_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
+
+            if (e.Button == MouseButtons.Right)
+            {
+
+                DialogResult result = this.color2.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+
+                    trackBar2.BackColor = color2.Color;
+
+                }
+            }
+        }
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void Form2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Properties.Settings.Default.FormHeight2 = this.Height;
+            Properties.Settings.Default.FormWidth2 = this.Width;
+
+            if (pictureBox2.Image == null)
+            {
+                BackgroundfilePath = "";
+            }
+            Properties.Settings.Default.backgroundimg2 = BackgroundfilePath;
+            Properties.Settings.Default.bordercolor2 = this.BackColor;
+            Properties.Settings.Default.panelcolor2 = panel3.BackColor;
+            Properties.Settings.Default.label1color2 = label1.ForeColor;
+            Properties.Settings.Default.label3color2 = label3.ForeColor;
+            Properties.Settings.Default.form2location = this.Location;
+
+            Properties.Settings.Default.form2label1font = label1.Font;
+            Properties.Settings.Default.form2label3font = label3.Font;
+            Properties.Settings.Default.label1location2 = label1.Location;
+            Properties.Settings.Default.label3location2 = label3.Location;
+
+            Properties.Settings.Default.track2 = trackBar2.BackColor;
+            Properties.Settings.Default.opa2 = this.Opacity;
+
+         
+         
+            if (panel1.Width == 37)
+            {
+                Properties.Settings.Default.btnshow2 = true;
+            }
+            else
+            {
+                Properties.Settings.Default.btnshow2 = false;
+            }
+            Properties.Settings.Default.Save();
+        }
+
+        private void label1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                startPoint = e.Location;
+            }
+        }
+
+        private void label3_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (DoubleClickcheck == false)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    startPoint3 = e.Location;
+                }
+            }
+        }
+
+        private void label1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                label1.Left += e.X - startPoint.X;
+                label1.Top += e.Y - startPoint.Y;
+            }
+        }
+
+        private void label3_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                label3.Left += e.X - startPoint3.X;
+                label3.Top += e.Y - startPoint3.Y;
+            }
+        }
+
+       
     }
 }
 

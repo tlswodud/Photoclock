@@ -6,8 +6,18 @@ using System.Windows.Controls.Ribbon;
 using System.Windows.Media.Media3D;
 using System.Data;
 using clockapp;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using System.IO;
+using System.Windows.Forms;
+using System.Windows.Shapes;
+using System.DirectoryServices.ActiveDirectory;
+//using Org.BouncyCastle.Bcpg;
+
 namespace calendar
 {
+
 
     public partial class Form3 : Form
     {
@@ -19,16 +29,13 @@ namespace calendar
         public datageteventhadler3_1 Datasendevent3_1;
 
         public delegate void datageteventhadler3_2(int x);//form2 .
-       
-
-
-
+                                                          // System.Windows.Forms.Label label0;
         public override bool AutoSize { get; set; }
 
         int cnt = 0;
         int colorcnt = 0;
         bool Flag = true;
-
+        string BackgroundfilePath;
         public Form3()
         {
 
@@ -36,6 +43,9 @@ namespace calendar
 
             label1.BackColor = Color.Transparent;
             label3.BackColor = Color.Transparent;
+            //panel6.BackColor = Color.Transparent;
+            label4.BackColor = Color.Transparent;
+
             // textbox3.Visible = false;
 
             monthCalendar1.SelectionStart = DateTime.Now;
@@ -49,9 +59,21 @@ namespace calendar
             // this.BackColor = Color.FromArgb(98, 102, 244); // border 색상
             panel5.Visible = false;
 
+            panel6.AutoScroll = false;
+            panel6.HorizontalScroll.Enabled = false;
+            panel6.VerticalScroll.Visible = false;
+            panel6.HorizontalScroll.Minimum = 0;
+            panel6.AutoScroll = true;
 
+            panel6.VerticalScroll.SmallChange = 0;
+            panel6.VerticalScroll.LargeChange = 5;
 
+            label2.Visible = false;
+            label5.Visible = false;
+            label6.Visible = false;
         }
+
+
 
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -60,10 +82,6 @@ namespace calendar
 
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWind, int wMsg, int wParam, int Iparam);
-        private void ontimeevent(object sender, EventArgs e)
-        {
-
-        }
 
 
 
@@ -161,20 +179,8 @@ namespace calendar
         }
 
 
-        private void iconButton8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
         private void Form1_Resize(object sender, EventArgs e)
         {
-
             AdjustForm();
         }
         private void AdjustForm()
@@ -188,7 +194,6 @@ namespace calendar
                     if (this.Padding.Top != borderSize) ;
                     this.Padding = new Padding(borderSize);
                     break;
-
 
             }
         }
@@ -240,15 +245,15 @@ namespace calendar
         {
             if (this.panel1.Width > 104)
             {
-                panel1.Width = 40;
+                panel1.Width = 40;//40
                 panel3.Width = 40;
                 pictureBox1.Visible = false;
                 btnmenu.Dock = DockStyle.Top;
-                foreach (Button btnmenu in this.panel3.Controls.OfType<Button>())
+                foreach (Button menubtn in this.panel3.Controls.OfType<Button>())
                 {
-                    btnmenu.Text = "";
-                    btnmenu.ImageAlign = ContentAlignment.MiddleLeft;
-                    btnmenu.Padding = new Padding(0);
+                    menubtn.Text = "";
+                    menubtn.ImageAlign = ContentAlignment.MiddleLeft;
+                    menubtn.Padding = new Padding(0);
 
                 }
             }
@@ -259,21 +264,17 @@ namespace calendar
                 panel3.Width = 105;
                 pictureBox1.Visible = true;
                 btnmenu.Dock = DockStyle.None;
-                foreach (Button btnmenu in this.panel3.Controls.OfType<Button>())
+                foreach (Button menubtn in this.panel3.Controls.OfType<Button>())
                 {
-                    btnmenu.Text = "  " + btnmenu.Tag.ToString();
-                    btnmenu.ImageAlign = ContentAlignment.MiddleLeft;
-                    btnmenu.Padding = new Padding(0, 0, 0, 0);
+                    menubtn.Text = "  " + menubtn.Tag.ToString();
+                    menubtn.ImageAlign = ContentAlignment.MiddleLeft;
+                    menubtn.Padding = new Padding(0, 0, 0, 0);
 
                 }
             }
 
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
 
         private void trackbutton_Click(object sender, EventArgs e)
@@ -295,17 +296,7 @@ namespace calendar
             this.Opacity = trackBar2.Value * 0.01;
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
-
-
-
-        private void optionbutton_MouseClick(object sender, MouseEventArgs e)
-        {
-
-        }
 
         private void optionbutton_Click(object sender, EventArgs e)
         {
@@ -325,55 +316,27 @@ namespace calendar
         {
             if (this.panel1.Width == 40)
             {
-                panel5.Width = 40;
-                foreach (Button btnmenu in this.panel5.Controls.OfType<Button>())
+                panel5.Width = 37;
+                foreach (Button menubtn in this.panel5.Controls.OfType<Button>())
                 {
-                    btnmenu.Text = "";
-                    btnmenu.ImageAlign = ContentAlignment.MiddleLeft;
-                    btnmenu.Padding = new Padding(0);
+                    menubtn.Text = "";
+                    menubtn.ImageAlign = ContentAlignment.MiddleLeft;
+                    menubtn.Padding = new Padding(0);
 
                 }
             }
             else
             {
                 panel5.Width = 105;
-                foreach (Button btnmenu in this.panel5.Controls.OfType<Button>())
+                foreach (Button menubtn in this.panel5.Controls.OfType<Button>())
                 {
-                    btnmenu.Text = "  " + btnmenu.Tag.ToString();
-                    btnmenu.ImageAlign = ContentAlignment.MiddleLeft;
-                    btnmenu.Padding = new Padding(0, 0, 0, 0);
+                    menubtn.Text = "  " + menubtn.Tag.ToString();
+                    menubtn.ImageAlign = ContentAlignment.MiddleLeft;
+                    menubtn.Padding = new Padding(0, 0, 0, 0);
                 }
             }
         }
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
 
-        }
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void menuStrip1_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void iconButton4_Click_1(object sender, EventArgs e)
-        {
-
-        }
 
         private void sizebutton_Click(object sender, EventArgs e)
         {
@@ -382,14 +345,18 @@ namespace calendar
             if (monthCalendar1.Visible == true)
             {
                 monthCalendar1.Visible = false;
-                label1.Location = new Point(19, 32);
-                trackBar2.Location = new Point(197, 16);
+                //label1.Location = new Point(19, 32);
+                //trackBar2.Location = new Point(197, 16);
+                panel6.Location = new Point(19, 30);
+                panel6.Size = new Size(334, 400);
             }
             else
             {
                 monthCalendar1.Visible = true;
-                label1.Location = new Point(19, 226);
-                trackBar2.Location = new Point(197, 213);
+                //label1.Location = new Point(19, 226);
+                //trackBar2.Location = new Point(197, 213);
+                panel6.Location = new Point(19, 203);
+                panel6.Size = new Size(334, 220);
             }
 
         }
@@ -408,12 +375,14 @@ namespace calendar
                 panel3.BackColor = Color.Linen;
                 panel5.BackColor = Color.Linen;
                 this.BackColor = Color.LightPink;
+                trackBar2.BackColor = Color.LightPink;
             }
             else if (colorcnt == 1)
             {
                 panel3.BackColor = Color.LightSkyBlue;
                 panel5.BackColor = Color.LightSkyBlue;
                 this.BackColor = Color.DeepSkyBlue;
+                trackBar2.BackColor = Color.PaleTurquoise;
 
             }
             else if (colorcnt == 0)
@@ -421,6 +390,8 @@ namespace calendar
                 panel3.BackColor = Color.LightGray;
                 panel5.BackColor = Color.LightGray;
                 this.BackColor = Color.Gray;
+
+                trackBar2.BackColor = Color.LightGray;
 
             }
 
@@ -430,22 +401,21 @@ namespace calendar
             this.Visible = true;
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
         {
-            label1.Text = monthCalendar1.SelectionStart.ToString("MM / dd");
+            label1.Text = monthCalendar1.SelectionStart.ToString("yy/MM/dd");
             Flag = false;
+            readfile();
         }
 
         private void label1_Paint(object sender, PaintEventArgs e)
         {
             if (Flag == true)
             {
-                label1.Text = DateTime.Now.ToString("MM / dd");
+                //label1.Text = DateTime.Now.ToString("yy/MM/dd");
+                label1.Text = monthCalendar1.SelectionStart.ToString("yy/MM/dd");
+
             }
         }
 
@@ -456,22 +426,312 @@ namespace calendar
             Datasendevent3_1(x);
         }
 
+        private void readfile()
+        {
+            string path = "C:\\clocktxtfolder\\clockapptest.txt";
+
+            if (System.IO.File.Exists(path) == false)
+            {
+                label2.Visible = false;
+                label5.Visible = false;
+                label6.Visible = false;
+
+                return;
+            }
+            label2.Visible = true;
+            label5.Visible = true;
+            label6.Visible = true;
+
+
+            StreamReader sr2 = new StreamReader(File.Open(path, FileMode.Open, FileAccess.ReadWrite));
+            label4.Text = "Record your daily life!";
+
+            string line = "";
+            string linecheck;
+            int o = 0; int c = 1;
+            int checcnt = 0;
+            //label4.Text = sr2.ReadLine();
+            while (true)
+            {
+                linecheck = sr2.ReadLine();
+
+                if (linecheck == label1.Text)
+                {
+                    checcnt++;
+                    o = 1;
+                    c++;
+                    continue;
+                }
+                if (linecheck == null)
+                {
+                    break;
+                }
+                if (o == 1 && c == 2)
+                {
+                    line += linecheck;
+                    line += "\n";
+                    line += "\n";
+                    line += "   ";
+                    c++;
+                    continue;
+                }
+                if (o == 1 && c == 3)
+                {
+
+                    line += linecheck;
+                    line += "\n";
+                    line += "\n";
+                    c = 1;
+                    o = 0;
+                    continue;
+                }
+            }
+            if (checcnt == 0)
+            {
+                label4.Text = label4.Text;
+                label2.Visible = false;
+                label5.Visible = false;
+                label6.Visible = false;
+            }
+            else
+            {
+                label4.Text = line;
+            }
+            sr2.Close();
+        }
+        private void label4_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+
+                DialogResult result = this.color3.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    // Set form background to the selected color.
+                    label4.ForeColor = color3.Color;
+                }
+            }
+        }
+
+        private void panel2_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
+
+            if (e.Button == MouseButtons.Right)
+            {
+                DialogResult result = this.color3.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    // Set form background to the selected color.
+
+                    this.BackColor = color3.Color;
+                }
+            }
+        }
+        private void panel3_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
+
+            if (e.Button == MouseButtons.Right)
+            {
+
+                DialogResult result = this.color3.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    // Set form background to the selected color.
+                    panel3.BackColor = color3.Color;
+                    panel5.BackColor = color3.Color;
+                }
+            }
+        }
+
+        private void panel4_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] filess = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+            if (filess.Length > 0 && File.Exists(filess[0]))
+            {
+                BackgroundfilePath = filess[0];
+
+                pictureBox2.Visible = true;
+
+                // label3.Parent = pictureBox2;
+                //  label1.Parent = pictureBox2;
+
+                pictureBox2.Image = Bitmap.FromFile(BackgroundfilePath);
+
+            }
+
+        }
+
+        private void panel4_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private void backgroundbutton_Click(object sender, EventArgs e)
+        {
+            if (this.TopMost == true)
+            {
+                this.TopMost = false;
+            }
+            else
+            {
+                this.TopMost = true;
+
+            }
+        }
+
+        private void iconButton1_Click_1(object sender, EventArgs e)
+        {
+            if (panel6.Visible == true)
+            {
+                panel6.Visible = false;
+            }
+            else
+            {
+                panel6.Visible = true;
+            }
+        }
+        private void trackBar2_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
+
+            if (e.Button == MouseButtons.Right)
+            {
+
+                DialogResult result = this.color3.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+
+                    trackBar2.BackColor = color3.Color;
+
+                }
+
+            }
+        }
+        private void label1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+
+                DialogResult result = this.color3.ShowDialog();
+                DialogResult result2 = fontDialog1.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    // Set form background to the selected color.
+                    label1.ForeColor = color3.Color;
+                }
+
+                if (result2 == DialogResult.OK)
+                {
+                    // Set form background to the selected color.
+                    label1.Font = fontDialog1.Font;
+                }
+
+
+            }
+        }
+
+        private void pictureBox2_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
+
+        }
+
+        private void panel4_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
+
+        }
+
+        private void Form3_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (pictureBox2.Image == null)
+            {
+                BackgroundfilePath = "";
+            }
+            clockapp.Properties.Settings.Default.backgroundimg3 = BackgroundfilePath;
+            clockapp.Properties.Settings.Default.bordercolor3 = this.BackColor;
+            clockapp.Properties.Settings.Default.panelcolor3 = panel3.BackColor;
+            clockapp.Properties.Settings.Default.label1color3 = label1.ForeColor;
+            clockapp.Properties.Settings.Default.label4color3 = label4.ForeColor;
+            clockapp.Properties.Settings.Default.form3location = this.Location;
+            clockapp.Properties.Settings.Default.form3label1font = label1.Font;
+
+
+
+            clockapp.Properties.Settings.Default.track3 = trackBar2.BackColor;
+
+            clockapp.Properties.Settings.Default.Save();
+
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+
+            BackgroundfilePath = clockapp.Properties.Settings.Default.backgroundimg3;
+
+            this.BackColor = clockapp.Properties.Settings.Default.bordercolor3;
+            this.panel3.BackColor = clockapp.Properties.Settings.Default.panelcolor3;
+            this.panel5.BackColor = clockapp.Properties.Settings.Default.panelcolor3;
+            label1.ForeColor = clockapp.Properties.Settings.Default.label1color3;
+            label4.ForeColor = clockapp.Properties.Settings.Default.label4color3;
+            this.Location = clockapp.Properties.Settings.Default.form3location;
+            label1.Font = clockapp.Properties.Settings.Default.form3label1font;
+
+            trackBar2.BackColor = clockapp.Properties.Settings.Default.track3;
+
+            if (System.IO.File.Exists(BackgroundfilePath) && BackgroundfilePath != "")
+            {
+                pictureBox2.Visible = true;
+
+
+                pictureBox2.Image = Bitmap.FromFile(BackgroundfilePath);
+            }
 
 
 
 
-        //private void label1_SizeChanged(object sender, EventArgs e) 사이즈 
-        //{
-        //    Graphics g = label1.CreateGraphics();
-        //    SizeF textSize = g.MeasureString(label1.Text, label1.Font);
-        //    float scale = Math.Min(label1.Width / textSize.Width, label1.Height / textSize.Height);
-        //    float fontSize = label1.Font.Size * scale;
-        //    label1.Font = new Font(label1.Font.FontFamily, fontSize, label1.Font.Style)
+        }
 
-        //}
+        private void initial_button_Click(object sender, EventArgs e)
+        {
+            label1.Font = new Font("경기천년제목V Bold", 24, FontStyle.Bold);
+            label1.ForeColor = Color.Black;
+            trackBar2.BackColor = Color.LightGray;
+            pictureBox2.Image = null;
+            panel4.BackgroundImage = null;
+            label4.ForeColor = Color.Black;
 
 
+        }
     }
-
-
 }
+
+
+
+
