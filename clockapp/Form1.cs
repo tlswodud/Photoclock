@@ -81,10 +81,6 @@ namespace clockapp
             panel5.Visible = false;
             textBox1.Visible = false;
 
-
-
-            //this.FormBorderStyle = FormBorderStyle.None;
-
         }
 
 
@@ -103,6 +99,10 @@ namespace clockapp
 
         private void panel2_MouseDown(object sender, MouseEventArgs e) // 마우스 다운을 통해 핸들기능 추가
         {
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }//마우스 다운 이벤트가 발생하면 호출 
@@ -164,18 +164,20 @@ namespace clockapp
 
             base.WndProc(ref m);
         }
-        protected override CreateParams CreateParams/*// 사이즈 조절 둥근 디자인 이지만 위에 이상한게 뜸*/
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                if (!DesignMode)
-                {
-                    cp.Style |= 0x20000;// 0x40000
-                }
-                return cp;
-            }
-        }
+
+        // 사이즈 조절 둥근 디자인 이지만 위에 이상한게 뜸*/ //없에고 싶다..
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        CreateParams cp = base.CreateParams;
+        //        if (!DesignMode)
+        //        {
+        //            cp.Style |= 0x20000;// 0x40000
+        //        }
+        //        return cp;
+        //    }
+        //}
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -395,8 +397,6 @@ namespace clockapp
                 Application.Exit();
             }
         }
-
-
 
 
         private void maxwindow_MouseClick(object sender, MouseEventArgs e)
@@ -876,7 +876,9 @@ namespace clockapp
             if (panel5.Visible == true)
             {
                 panel5.Visible = false;
+               
             }
+
 
 
             if (e.Button == MouseButtons.Right)
@@ -922,9 +924,6 @@ namespace clockapp
                 }
 
             }
-
-
-
         }
 
         private void panel4_DragDrop(object sender, DragEventArgs e)
@@ -982,20 +981,20 @@ namespace clockapp
 
         private void pictureBox2_MouseClick(object sender, MouseEventArgs e)
         {
-            if (panel5.Visible == true)
-            {
-                panel5.Visible = false;
-            }
-
-
+                if (panel5.Visible == true)
+                {
+                    panel5.Visible = false;
+                }
         }
 
         private void panel4_MouseClick(object sender, MouseEventArgs e)
         {
-            if (panel5.Visible == true)
-            {
-                panel5.Visible = false;
-            }
+           
+                if (panel5.Visible == true)
+                {
+                    panel5.Visible = false;
+                }
+            
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -1192,13 +1191,21 @@ namespace clockapp
 
         private void panel3_MouseDown(object sender, MouseEventArgs e)
         {
+
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
         private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
         {
-
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
 
@@ -1322,7 +1329,8 @@ namespace clockapp
 
         }
         private void panel6_MouseDown(object sender, MouseEventArgs e)
-        {
+        {   
+
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
 

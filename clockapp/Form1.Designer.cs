@@ -171,9 +171,9 @@
             panel5.Controls.Add(timebutton);
             panel5.Controls.Add(colorbutton);
             panel5.Controls.Add(sizebutton);
-            panel5.Location = new Point(0, 19);
+            panel5.Location = new Point(0, 5);
             panel5.Name = "panel5";
-            panel5.Size = new Size(99, 144);
+            panel5.Size = new Size(99, 147);
             panel5.TabIndex = 6;
             // 
             // BGButton1
@@ -580,13 +580,13 @@
             // 
             // contextMenuStrip1
             // 
-            contextMenuStrip1.BackColor = Color.LightSteelBlue;
+            contextMenuStrip1.BackColor = Color.Gainsboro;
             contextMenuStrip1.ImeMode = ImeMode.On;
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { clickThroughToolStripMenuItem, stopwatchToolStripMenuItem, clockToolStripMenuItem, titlebarhiddenToolStripMenuItem, stopwatchToolStripMenuItem1, clockToolStripMenuItem1 });
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.ShowCheckMargin = true;
             contextMenuStrip1.ShowImageMargin = false;
-            contextMenuStrip1.Size = new Size(195, 174);
+            contextMenuStrip1.Size = new Size(195, 152);
             // 
             // clickThroughToolStripMenuItem
             // 

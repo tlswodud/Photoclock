@@ -88,6 +88,11 @@ namespace clockapp
 
         private void panel2_MouseDown(object sender, MouseEventArgs e) // 마우스 다운을 통해 핸들기능 추가
         {
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
+
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }//마우스 다운 이벤트가 발생하면 호출 
@@ -930,12 +935,22 @@ namespace clockapp
      
         private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
         {
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
+
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
         private void panel3_MouseDown(object sender, MouseEventArgs e)
         {
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
+
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
 
