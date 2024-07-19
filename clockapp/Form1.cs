@@ -190,7 +190,7 @@ namespace clockapp
             //둥근 폼 디자인 방법
 
             secondDash.MouseUp += secondDash_MouseClick;
-            iconButton9.MouseUp += iconButton9_MouseClick;
+            iconButton9.MouseUp += iconButton9_MouseClick; //마우스 클릭 받기 
 
 
             this.SetStyle(ControlStyles.ResizeRedraw, true);
@@ -213,10 +213,7 @@ namespace clockapp
             {
                 bordermenu2.FlatAppearance.BorderColor = Properties.Settings.Default.panelcolor;
             }
-            //버튼 누를시 이상한 border 지우는 것//
-
-
-
+            //버튼 누를시 이상한 border 지우는 것// 원인 bordersize 가 0 이지만 border가 생성됨 
 
 
             label1.ForeColor = Properties.Settings.Default.label1color;
@@ -240,7 +237,7 @@ namespace clockapp
 
 
 
-            if (Properties.Settings.Default.contextstop == true)
+            if (Properties.Settings.Default.contextstop == true) 
             {
                 stopwatchToolStripMenuItem1.Checked = true;
                 slidingTimer.Start();
@@ -271,8 +268,6 @@ namespace clockapp
                 stopwatchToolStripMenuItem.Checked = true;
             }
 
-
-
             //trayicon 둥글게 디자인
             contextMenuStrip1.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, contextMenuStrip1.Width, contextMenuStrip1.Height, 20, 20));
 
@@ -280,10 +275,8 @@ namespace clockapp
             if (System.IO.File.Exists(BackgroundfilePath) && BackgroundfilePath != "")
             {
                 pictureBox2.Visible = true;
-
                 label3.Parent = pictureBox2;
                 label1.Parent = pictureBox2;
-
                 pictureBox2.Image = Bitmap.FromFile(BackgroundfilePath);
             }
 
@@ -317,38 +310,33 @@ namespace clockapp
                     menubtn.Text = "  " + menubtn.Tag.ToString();
                     menubtn.ImageAlign = ContentAlignment.MiddleLeft;
                     menubtn.Padding = new Padding(0, 0, 0, 0);
-
                 }
             }
             form2.Show();
-            form2.Visible = true;
+            form2.Visible = true; // form1 생성이 끝나고 난후 form 2 생성 작업표시줄에 안뜨는 오류
 
         }
-        // The enum flag for DwmSetWindowAttribute's second parameter, which tells the function what attribute to set.
-        // Copied from dwmapi.h
+        //윈도우 API DWM  둥글게 디자인 하는 API 
         public enum DWMWINDOWATTRIBUTE
         {
-            DWMWA_WINDOW_CORNER_PREFERENCE = 33
+            DWMWA_WINDOW_CORNER_PREFERENCE = 33 // 창모서리 설정 속성
         }
-
-        // The DWM_WINDOW_CORNER_PREFERENCE enum for DwmSetWindowAttribute's third parameter, which tells the function
-        // what value of the enum to set.
-        // Copied from dwmapi.h
+       
         public enum DWM_WINDOW_CORNER_PREFERENCE
         {
-            DWMWCP_DEFAULT = 0,
-            DWMWCP_DONOTROUND = 1,
-            DWMWCP_ROUND = 2,
-            DWMWCP_ROUNDSMALL = 3
+            DWMWCP_DEFAULT = 0,    // 시스템기본
+            DWMWCP_DONOTROUND = 1, // 창모서리 둥글게할거임
+            DWMWCP_ROUND = 2,      // 둥글게
+            DWMWCP_ROUNDSMALL = 3  
         }
-
-        // Import dwmapi.dll and define DwmSetWindowAttribute in C# corresponding to the native function.
         [DllImport("dwmapi.dll", CharSet = CharSet.Unicode, PreserveSig = false)]
         internal static extern void DwmSetWindowAttribute(IntPtr hwnd,
                                                          DWMWINDOWATTRIBUTE attribute,
                                                          ref DWM_WINDOW_CORNER_PREFERENCE pvAttribute,
                                                          uint cbAttribute);
-        //둥글게 디자인
+        //윈도우 API DWM  둥글게 디자인 하는 API 
+
+        // contextmenu 둥글게 디자인
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
         // 둥글게 디자인 
@@ -364,7 +352,7 @@ namespace clockapp
             switch (this.WindowState)
             {
                 case FormWindowState.Maximized:
-                    this.Padding = new Padding(0, 11, 11, 0);
+                    this.Padding = new Padding(0, 11, 11, 0); //최대화제거//
                     break;
                 case FormWindowState.Normal:
                     if (this.Padding.Top != borderSize) ;
@@ -374,7 +362,7 @@ namespace clockapp
         }
         private void exitbotton_MouseClick(object sender, MouseEventArgs e)
         {
-            // Application.Exit();
+            
 
             this.Hide();
 
@@ -384,11 +372,10 @@ namespace clockapp
                 if (Application.OpenForms[i].Visible == false)
                     count++;
             }
-            //label1.Text = count.ToString(); // Active Forms value :)
-            if (count == 3)
+            
+            if (count == 3)  
             {
-
-                Application.Exit();
+                Application.Exit(); // 3개 폼이 닫기면 완전종료 
             }
 
         }
@@ -402,7 +389,7 @@ namespace clockapp
                 if (Application.OpenForms[i].Visible == false)
                     count++;
             }
-            //label1.Text = count.ToString(); // Active Forms value :)
+           
             if (count == 3)
             {
                 Application.Exit();
@@ -436,7 +423,7 @@ namespace clockapp
                 trackbutton.Location = new Point(0, 107);
                 optionbutton.Location = new Point(0, 137);
             }
-            else if (panel1.Width == 37 && cnt == 1)
+            else if (panel1.Width == 37 && cnt == 1) // 폐기 ㅎㅎ 
             {
                 pauserun.Location = new Point(0, 60);
                 iconButton3.Location = new Point(0, 92);
@@ -454,7 +441,6 @@ namespace clockapp
             if (panel5.Visible == true)
             {
                 optionMenucollapso();
-
             }
 
         }
@@ -501,7 +487,7 @@ namespace clockapp
                 pauserun.Tag = "Play";
                 pauserun.Text = "  " + pauserun.Tag.ToString();
                 stopwatch.Stop();
-                Flagstop = true;
+                Flagstop = true; 
                 dtstop = DateTime.Now;
 
             }
@@ -542,7 +528,6 @@ namespace clockapp
         {
             if (trackBar2.Visible == true)
             {
-
                 trackBar2.Visible = false;
             }
             else
@@ -550,7 +535,7 @@ namespace clockapp
                 //trackbutton.IconColor = Color.Snow;
                 trackBar2.Visible = true;
             }
-            Properties.Settings.Default.track1visable = trackBar2.Visible;
+            Properties.Settings.Default.track1visable = trackBar2.Visible; // 트렉바는 폼이 종료되면 visble이 false로 전환되어  무조건 false로 나오넹..
         }
 
         private void trackBar2_ValueChanged(object sender, EventArgs e)
@@ -600,7 +585,7 @@ namespace clockapp
         }
 
 
-        private void sizebutton_Click(object sender, EventArgs e)
+        private void sizebutton_Click(object sender, EventArgs e) // -> 초기화버튼으로 변경
         {
             label1.Font = new Font("경기천년제목V Bold", 30, FontStyle.Bold);
             label3.Font = new Font("경기천년제목 Bold", 16, FontStyle.Bold);
@@ -1109,7 +1094,7 @@ namespace clockapp
                 label3.Top += e.Y - startPoint3.Y;
             }
         }
-
+        //폼을 투명 하게 해서 클릭이 통과되도록 만들거임 
         [DllImport("user32.dll", EntryPoint = "GetWindowLong")]
         public static extern int GetWindowLong(IntPtr hWnd, GWL nIndex);
 
@@ -1122,17 +1107,15 @@ namespace clockapp
         int clickthr = 1;
         void ClickThrough()
         {
-            int wl = GetWindowLong(this.Handle, GWL.ExStyle);
-            wl = wl | 0x20;
+            int wl = GetWindowLong(this.Handle, GWL.ExStyle);// 현재 창 스타일 가져오기 
+            wl = wl | 0x20;                                  //WS_EX_TRANSPARENT 플래그
             SetWindowLong(this.Handle, GWL.ExStyle, wl);
-
-
         }
 
         void ClickThroughfalse()
         {
-            int wl = GetWindowLong(this.Handle, GWL.ExStyle);
-            wl = wl & ~(0x20); // 통과 값에서 반전시키고 & 연산으로 비트 제거 
+            int wl = GetWindowLong(this.Handle, GWL.ExStyle); 
+            wl = wl & ~(0x20); // 통과 값에서 반전시키고 & 연산으로 비트 제거  
             SetWindowLong(this.Handle, GWL.ExStyle, wl);
 
         }
@@ -1166,7 +1149,7 @@ namespace clockapp
             SetWindowLong(form2.Handle, GWL.ExStyle, wl2);
         }
 
-        public class clickthrogh_state // clock 의 context check 여부
+        public class clickthrogh_state // clock 의 clickthrogh check 여부
         {
             public static bool ClickTS { get; set; } = false;
         }
@@ -1218,7 +1201,6 @@ namespace clockapp
 
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
-
 
         }
 
