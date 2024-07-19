@@ -538,5 +538,113 @@ namespace clockapp.Properties {
                 this["track2visable"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool contextstop {
+            get {
+                return ((bool)(this["contextstop"]));
+            }
+            set {
+                this["contextstop"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool contextclock {
+            get {
+                return ((bool)(this["contextclock"]));
+            }
+            set {
+                this["contextclock"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool statethroghstop {
+            get {
+                return ((bool)(this["statethroghstop"]));
+            }
+            set {
+                this["statethroghstop"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool statethroghclock {
+            get {
+                return ((bool)(this["statethroghclock"]));
+            }
+            set {
+                this["statethroghclock"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Transparent")]
+        public global::System.Drawing.Color Dashbuttoncolor {
+            get {
+                return ((global::System.Drawing.Color)(this["Dashbuttoncolor"]));
+            }
+            set {
+                this["Dashbuttoncolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Transparent")]
+        public global::System.Drawing.Color DashButtoncolor2 {
+            get {
+                return ((global::System.Drawing.Color)(this["DashButtoncolor2"]));
+            }
+            set {
+                this["DashButtoncolor2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Transparent")]
+        public global::System.Drawing.Color Dashbuttoncolor3 {
+            get {
+                return ((global::System.Drawing.Color)(this["Dashbuttoncolor3"]));
+            }
+            set {
+                this["Dashbuttoncolor3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Stopwatch")]
+        public string lable3_1text {
+            get {
+                return ((string)(this["lable3_1text"]));
+            }
+            set {
+                this["lable3_1text"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Clock")]
+        public string label3_2text {
+            get {
+                return ((string)(this["label3_2text"]));
+            }
+            set {
+                this["label3_2text"] = value;
+            }
+        }
     }
 }

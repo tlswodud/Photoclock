@@ -131,5 +131,32 @@
     <Setting Name="track2visable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="contextstop" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="contextclock" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="statethroghstop" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="statethroghclock" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Dashbuttoncolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Transparent</Value>
+    </Setting>
+    <Setting Name="DashButtoncolor2" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Transparent</Value>
+    </Setting>
+    <Setting Name="Dashbuttoncolor3" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Transparent</Value>
+    </Setting>
+    <Setting Name="lable3_1text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Stopwatch</Value>
+    </Setting>
+    <Setting Name="label3_2text" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Clock</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -105,7 +105,7 @@
             // 
             // iconButton9
             // 
-            iconButton9.BackColor = SystemColors.AppWorkspace;
+            iconButton9.BackColor = Color.Transparent;
             iconButton9.FlatAppearance.BorderSize = 0;
             iconButton9.FlatStyle = FlatStyle.Flat;
             iconButton9.Font = new Font("Lucida Sans Typewriter", 9F);
@@ -118,6 +118,8 @@
             iconButton9.TabIndex = 3;
             iconButton9.Text = "DASHBOARD";
             iconButton9.UseVisualStyleBackColor = false;
+            iconButton9.Click += iconButton9_Click;
+            iconButton9.MouseClick += iconButton9_MouseClick;
             // 
             // exitbotton
             // 
@@ -168,6 +170,7 @@
             panel4.DragDrop += panel4_DragDrop;
             panel4.DragEnter += panel4_DragEnter;
             panel4.MouseClick += panel4_MouseClick;
+            panel4.MouseDown += panel4_MouseDown;
             // 
             // panel5
             // 
@@ -365,6 +368,7 @@
             pictureBox2.TabStop = false;
             pictureBox2.Visible = false;
             pictureBox2.MouseClick += pictureBox2_MouseClick;
+            pictureBox2.MouseDown += pictureBox2_MouseDown;
             // 
             // sizebutton
             // 
@@ -406,6 +410,7 @@
             panel3.Size = new Size(100, 481);
             panel3.TabIndex = 0;
             panel3.MouseClick += panel3_MouseClick;
+            panel3.MouseDown += panel3_MouseDown;
             // 
             // iconButton1
             // 
@@ -452,7 +457,7 @@
             trackbutton.FlatAppearance.BorderSize = 0;
             trackbutton.FlatStyle = FlatStyle.Flat;
             trackbutton.Font = new Font("Lucida Sans", 7F);
-            trackbutton.IconChar = FontAwesome.Sharp.IconChar.Egg;
+            trackbutton.IconChar = FontAwesome.Sharp.IconChar.Sun;
             trackbutton.IconColor = Color.Black;
             trackbutton.IconFont = FontAwesome.Sharp.IconFont.Auto;
             trackbutton.IconSize = 25;
@@ -515,6 +520,7 @@
             Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
