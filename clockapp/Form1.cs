@@ -15,13 +15,14 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using System.Reflection;
 using System.Timers;
 using System.Security.Cryptography.X509Certificates;
-
+using System.Threading;
 
 
 namespace clockapp
 {
     public partial class Form1 : Form
     {
+
         private Stopwatch stopwatch;
         private Size formSize;
         private int borderSize = 6;
@@ -34,7 +35,8 @@ namespace clockapp
         bool dtplaycheck = false; // 처음 play 버튼을 누른 시간
         string BackgroundfilePath;
         bool vtrack = false;
-
+        bool firststarted_clickth = false;
+      
         DateTime dtstop;
         DateTime dtplay;
 
@@ -51,6 +53,8 @@ namespace clockapp
         {
 
             InitializeComponent();
+
+            CheckRunThisProcess();
 
             //
             mousetimer.Start();
@@ -81,8 +85,30 @@ namespace clockapp
             panel5.Visible = false;
             textBox1.Visible = false;
 
-        }
 
+        }
+        private bool CheckRunThisProcess()
+        {
+            bool rslt = false;
+            int processcount = 0;
+            System.Diagnostics.Process[] procs;
+            procs = System.Diagnostics.Process.GetProcesses();
+            string progressname = Process.GetCurrentProcess().ProcessName;
+
+            foreach (System.Diagnostics.Process aProc in procs)
+            {
+                if (aProc.ProcessName.ToString().Equals(progressname))
+                {
+                    processcount++;
+                    if (processcount > 1)
+                    {
+                        rslt = true;
+                        this.Close();
+                    }
+                }
+            }
+            return rslt;
+        }
 
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -114,7 +140,7 @@ namespace clockapp
         const int HTCLIENT = 1;
 
         const int HTCAPTION = 2;
-
+        const int HTTRANSPARENT = -1;
         protected override void WndProc(ref Message m)
         {
 
@@ -124,6 +150,7 @@ namespace clockapp
             {
                 case 0x0084/*NCHITTEST*/ :
                     base.WndProc(ref m);
+
 
                     if ((int)m.Result == 0x01/*HTCLIENT*/)
                     {
@@ -165,25 +192,12 @@ namespace clockapp
             base.WndProc(ref m);
         }
 
-        // 사이즈 조절 둥근 디자인 이지만 위에 이상한게 뜸*/ //없에고 싶다..
-        //protected override CreateParams CreateParams
-        //{
-        //    get
-        //    {
-        //        CreateParams cp = base.CreateParams;
-        //        if (!DesignMode)
-        //        {
-        //            cp.Style |= 0x20000;// 0x40000
-        //        }
-        //        return cp;
-        //    }
-        //}
+        //사이즈 조절 둥근 디자인 이지만 위에 이상한게 뜸*/ //없에고 싶다..
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
             stopwatch = new Stopwatch();
-
-
 
             //둥근 폼 디자인 방법
             var attribute = DWMWINDOWATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE;
@@ -193,10 +207,6 @@ namespace clockapp
 
             secondDash.MouseUp += secondDash_MouseClick;
             iconButton9.MouseUp += iconButton9_MouseClick; //마우스 클릭 받기 
-
-
-            this.SetStyle(ControlStyles.ResizeRedraw, true);
-
 
             this.Width = Properties.Settings.Default.FormWidth;
             this.Height = Properties.Settings.Default.FormHeight;
@@ -237,9 +247,18 @@ namespace clockapp
             secondDash.BackColor = Properties.Settings.Default.Dashbuttoncolor;
             iconButton9.BackColor = Properties.Settings.Default.Dashbuttoncolor;
 
+            if (Properties.Settings.Default.statethroghstop == true)
+            {
+                firststarted_clickth = true;
+                stopwatchToolStripMenuItem.Checked = true;
+            }
+            if (Properties.Settings.Default.statethroghclock == true)
+            {
+                clockToolStripMenuItem.Checked = true;
+                clickthrogh_state.ClickTS = true;
+            }
 
-
-            if (Properties.Settings.Default.contextstop == true) 
+            if (Properties.Settings.Default.contextstop == true)
             {
                 stopwatchToolStripMenuItem1.Checked = true;
                 slidingTimer.Start();
@@ -256,20 +275,7 @@ namespace clockapp
                 Clocktoolcheck.CT = 2;
             }
 
-            if (Properties.Settings.Default.statethroghclock == true)
-            {
-                ClickThrough2();
-                clickthr2 = 0;
-                clockToolStripMenuItem.Checked = true;
-            }
-
-            if (Properties.Settings.Default.statethroghstop == true)
-            {
-                ClickThrough();
-                clickthr = 0;
-                stopwatchToolStripMenuItem.Checked = true;
-            }
-
+            
             //trayicon 둥글게 디자인
             contextMenuStrip1.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, contextMenuStrip1.Width, contextMenuStrip1.Height, 20, 20));
 
@@ -317,19 +323,20 @@ namespace clockapp
             form2.Show();
             form2.Visible = true; // form1 생성이 끝나고 난후 form 2 생성 작업표시줄에 안뜨는 오류
 
+
         }
         //윈도우 API DWM  둥글게 디자인 하는 API 
         public enum DWMWINDOWATTRIBUTE
         {
             DWMWA_WINDOW_CORNER_PREFERENCE = 33 // 창모서리 설정 속성
         }
-       
+
         public enum DWM_WINDOW_CORNER_PREFERENCE
         {
             DWMWCP_DEFAULT = 0,    // 시스템기본
             DWMWCP_DONOTROUND = 1, // 창모서리 둥글게할거임
             DWMWCP_ROUND = 2,      // 둥글게
-            DWMWCP_ROUNDSMALL = 3  
+            DWMWCP_ROUNDSMALL = 3
         }
         [DllImport("dwmapi.dll", CharSet = CharSet.Unicode, PreserveSig = false)]
         internal static extern void DwmSetWindowAttribute(IntPtr hwnd,
@@ -364,7 +371,6 @@ namespace clockapp
         }
         private void exitbotton_MouseClick(object sender, MouseEventArgs e)
         {
-            
 
             this.Hide();
 
@@ -374,8 +380,8 @@ namespace clockapp
                 if (Application.OpenForms[i].Visible == false)
                     count++;
             }
-            
-            if (count == 3)  
+
+            if (count == 3)
             {
                 Application.Exit(); // 3개 폼이 닫기면 완전종료 
             }
@@ -391,7 +397,7 @@ namespace clockapp
                 if (Application.OpenForms[i].Visible == false)
                     count++;
             }
-           
+
             if (count == 3)
             {
                 Application.Exit();
@@ -487,7 +493,7 @@ namespace clockapp
                 pauserun.Tag = "Play";
                 pauserun.Text = "  " + pauserun.Tag.ToString();
                 stopwatch.Stop();
-                Flagstop = true; 
+                Flagstop = true;
                 dtstop = DateTime.Now;
 
             }
@@ -554,6 +560,8 @@ namespace clockapp
             else
             {
                 panel5.Visible = true;
+
+
             }
             optionMenucollapso();
 
@@ -563,6 +571,7 @@ namespace clockapp
         {
             if (this.panel1.Width == 37)//40
             {
+                panel5.Location = new Point(0, 5);
                 panel5.Width = 37;
                 foreach (Button menubtn in this.panel5.Controls.OfType<Button>())
                 {
@@ -574,6 +583,18 @@ namespace clockapp
             }
             else
             {
+                if (panel2.Height == 0)
+                {
+                    panel5.Location = new Point(0, 39);
+                }
+                else
+                {
+                    panel5.Location = new Point(0, 5);
+                }
+
+
+
+
                 panel5.Width = 105;
                 foreach (Button menubtn in this.panel5.Controls.OfType<Button>())
                 {
@@ -600,7 +621,14 @@ namespace clockapp
             label1.ForeColor = Color.Black;
             label3.ForeColor = Color.Black;
             label3.Text = "Stopwatch";
-
+            foreach (Button bormenu1 in this.panel5.Controls.OfType<Button>())
+            {
+                bormenu1.FlatAppearance.BorderColor = Color.LightGray;
+            }
+            foreach (Button bormenu1_2 in this.panel3.Controls.OfType<Button>())
+            {
+                bormenu1_2.FlatAppearance.BorderColor = Color.LightGray;
+            }
             panel3.BackColor = Color.LightGray;
             panel5.BackColor = Color.LightGray;
             this.BackColor = Color.Gray;
@@ -761,10 +789,10 @@ namespace clockapp
                 }
                 trackBar2.Visible = false;
                 label4.Visible = true;
-                label4.Location = trackBar2.Location;
+                label4.Dock = DockStyle.Right;
                 label4.BackColor = Color.WhiteSmoke;
                 timer3.Start();
-                timer3.Interval = 2400;
+                timer3.Interval = 2400; // 타이머3 시작~~ 
 
             }
             else
@@ -876,10 +904,8 @@ namespace clockapp
             if (panel5.Visible == true)
             {
                 panel5.Visible = false;
-               
+
             }
-
-
 
             if (e.Button == MouseButtons.Right)
             {
@@ -970,6 +996,8 @@ namespace clockapp
 
         private void timer3_Tick(object sender, EventArgs e)
         {
+            label4.Dock = DockStyle.None;
+
             label4.Visible = false;
             if (vtrack == true)
             {
@@ -981,20 +1009,20 @@ namespace clockapp
 
         private void pictureBox2_MouseClick(object sender, MouseEventArgs e)
         {
-                if (panel5.Visible == true)
-                {
-                    panel5.Visible = false;
-                }
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
         }
 
         private void panel4_MouseClick(object sender, MouseEventArgs e)
         {
-           
-                if (panel5.Visible == true)
-                {
-                    panel5.Visible = false;
-                }
-            
+
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
+
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -1093,59 +1121,59 @@ namespace clockapp
                 label3.Top += e.Y - startPoint3.Y;
             }
         }
-        //폼을 투명 하게 해서 클릭이 통과되도록 만들거임 
-        [DllImport("user32.dll", EntryPoint = "GetWindowLong")]
-        public static extern int GetWindowLong(IntPtr hWnd, GWL nIndex);
 
-        [DllImport("user32.dll", EntryPoint = "SetWindowLong")]
-        public static extern int SetWindowLong(IntPtr hWnd, GWL nIndex, int dwNewLong);
 
-        [DllImport("user32.dll", EntryPoint = "SetLayeredWindowAttributes")]
-        public static extern bool SetLayeredWindowAttributes(IntPtr hWnd, int crKey, byte alpha, LWA dwFlags);
+        [DllImport("user32.dll")]
+        public static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
 
-        int clickthr = 1;
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
+        const int WS_EX_TRANSPARENT = 0x00000020;
+        const int GWL_EXSTYLE = (-20);
+        const int WS_EX_LAYERED = 0x00080000;
+
         void ClickThrough()
         {
-            int wl = GetWindowLong(this.Handle, GWL.ExStyle);// 현재 창 스타일 가져오기 
-            wl = wl | 0x20;                                  //WS_EX_TRANSPARENT 플래그
-            SetWindowLong(this.Handle, GWL.ExStyle, wl);
+
+            SetWindowLong(this.Handle, GWL_EXSTYLE, WS_EX_LAYERED | WS_EX_TRANSPARENT);
         }
 
         void ClickThroughfalse()
         {
-            int wl = GetWindowLong(this.Handle, GWL.ExStyle); 
-            wl = wl & ~(0x20); // 통과 값에서 반전시키고 & 연산으로 비트 제거  
-            SetWindowLong(this.Handle, GWL.ExStyle, wl);
 
+            SetWindowLong(this.Handle, GWL_EXSTYLE, WS_EX_LAYERED);
         }
-
 
 
         private void stopwatchToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             if (this.Visible == false)
             {
                 stopwatchToolStripMenuItem.Checked = false;
+
+                contextMenuStrip1.Visible = true;
                 return;
             }
-            if (clickthr == 0)
+            if (stopwatchToolStripMenuItem.Checked == false) //clickthr == 1
             {
                 ClickThroughfalse();
-                clickthr = 1;
             }
             else
             {
                 ClickThrough();
-                clickthr = 0;
+
             }
             contextMenuStrip1.Visible = true;
         }
+
+
         void ClickThrough2()
         {
-            int wl2 = GetWindowLong(form2.Handle, GWL.ExStyle);
 
-            wl2 = wl2 | 0x20;
-            SetWindowLong(form2.Handle, GWL.ExStyle, wl2);
+            SetWindowLong(form2.Handle, GWL_EXSTYLE, WS_EX_LAYERED | WS_EX_TRANSPARENT);
+
         }
 
         public class clickthrogh_state // clock 의 clickthrogh check 여부
@@ -1156,14 +1184,10 @@ namespace clockapp
 
         void ClickThroughfalse2()
         {
-            int wl2 = GetWindowLong(form2.Handle, GWL.ExStyle);
-            // 통과 값에서 반전시키고 & 연산으로 비트 제거 
-            wl2 = wl2 & ~(0x20);
-            SetWindowLong(form2.Handle, GWL.ExStyle, wl2);
-
+            SetWindowLong(form2.Handle, GWL_EXSTYLE, WS_EX_LAYERED);
         }
 
-        int clickthr2 = 1;
+        int clickthr2 = 0;
         private void clockToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -1172,16 +1196,14 @@ namespace clockapp
                 clockToolStripMenuItem.Checked = false; // false 가 
                 return;
             }
-            if (clickthr2 == 0)
+            if (clockToolStripMenuItem.Checked == false)
             {
                 ClickThroughfalse2();
-                clickthr2 = 1;
                 clickthrogh_state.ClickTS = false;
             }
             else
             {
                 ClickThrough2();
-                clickthr2 = 0;
                 clickthrogh_state.ClickTS = true;// clock의 클릭 스루 기능이 작동 안된다면
 
             }
@@ -1309,6 +1331,14 @@ namespace clockapp
             int X_form1_mouseLocation = formZeroPosiontoScreen.X;
             int Y_form1_mouseLocation = formZeroPosiontoScreen.Y;
 
+
+            if (Properties.Settings.Default.statethroghstop == true && firststarted_clickth == true)
+            {
+                firststarted_clickth = false;
+                ClickThrough(); 
+            }
+
+
             if (stopwatchToolStripMenuItem1.Checked == true)
             {
                 if (X_mouse <= X_form1_mouseLocation + this.Width && Y_mouse <= Y_form1_mouseLocation + this.Height &&
@@ -1329,7 +1359,7 @@ namespace clockapp
 
         }
         private void panel6_MouseDown(object sender, MouseEventArgs e)
-        {   
+        {
 
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
@@ -1375,7 +1405,10 @@ namespace clockapp
             }
         }
 
-        
+        private void exitPhotoclockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 
 }

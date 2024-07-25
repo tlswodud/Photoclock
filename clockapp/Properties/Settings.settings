@@ -75,7 +75,7 @@
       <Value Profile="(Default)">5, 5</Value>
     </Setting>
     <Setting Name="form2location" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">5, 5</Value>
+      <Value Profile="(Default)">15, 15</Value>
     </Setting>
     <Setting Name="form3location" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">5, 5</Value>

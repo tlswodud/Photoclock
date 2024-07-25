@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using calendar;
 using clockapp;
 using FontAwesome.Sharp;
+//using static System.Windows.Forms.DataFormats;
 using static clockapp.Form1;
 
 
@@ -37,16 +38,18 @@ namespace clockapp
         int colorcnt = 0;
         string BackgroundfilePath;
         bool DoubleClickcheck = false;
+        bool firststarted_clickth2 = false;
         private Point startPoint;
         private Point startPoint3;
 
         public Form2()
-        {
+        {   
 
             InitializeComponent();
 
             iconButton3.MouseUp +=  iconButton3_MouseClick;
             iconButton9.MouseUp += iconButton9_MouseClick;
+
 
             //둥근 폼 디자인 방법
             var attribute = DWMWINDOWATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE;
@@ -68,6 +71,9 @@ namespace clockapp
             mousetimer_2.Start();
         }
 
+
+
+
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         //Dllimport 는 외부 dll 함수 호출 이경우는 win 32 api 호출 한다 마우스 캡처를 해제한다? 모르겠다 써봐야알듯
@@ -88,10 +94,7 @@ namespace clockapp
 
         private void panel2_MouseDown(object sender, MouseEventArgs e) // 마우스 다운을 통해 핸들기능 추가
         {
-            if (panel5.Visible == true)
-            {
-                panel5.Visible = false;
-            }
+
 
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
@@ -220,7 +223,10 @@ namespace clockapp
             {
                 SlidingTimer.Start();
             }
-
+            if (Properties.Settings.Default.statethroghclock == true)
+            {
+                firststarted_clickth2 = true;
+            }
 
             if (System.IO.File.Exists(BackgroundfilePath) && BackgroundfilePath != "")
             {
@@ -265,8 +271,14 @@ namespace clockapp
                 }
             }
             //setting 값 불러오기// 
+           
+           
         }
+    
+    
 
+        
+     
         private void Form2_Resize(object sender, EventArgs e)
         {
 
@@ -502,7 +514,14 @@ namespace clockapp
             panel2.BackgroundImage = null;
             pictureBox2.Image = null;
             label3.Text = "Clock";
-
+            foreach (Button bormenu1 in this.panel5.Controls.OfType<Button>())
+            {
+                bormenu1.FlatAppearance.BorderColor = Color.LightGray;
+            }
+            foreach (Button bormenu1_2 in this.panel3.Controls.OfType<Button>())
+            {
+                bormenu1_2.FlatAppearance.BorderColor = Color.LightGray;
+            }
 
 
         }
@@ -897,42 +916,12 @@ namespace clockapp
         }
 
 
-        public enum GWL
-        {
-            ExStyle = -20
-        }
-
-        public enum WS_EX
-        {
-            Transparent = 0x20,
-            Layered = 0x80000
-        }
-
-        public enum LWA
-        {
-            ColorKey = 0x1,
-            Alpha = 0x2
-        }
 
         //투명화아래 폼 인식 코드// 
 
-        [DllImport("user32.dll", EntryPoint = "GetWindowLong")]
-        public static extern int GetWindowLong(IntPtr hWnd, GWL nIndex);
-
-        [DllImport("user32.dll", EntryPoint = "SetWindowLong")]
-        public static extern int SetWindowLong(IntPtr hWnd, GWL nIndex, int dwNewLong);
-
-        [DllImport("user32.dll", EntryPoint = "SetLayeredWindowAttributes")]
-        public static extern bool SetLayeredWindowAttributes(IntPtr hWnd, int crKey, byte alpha, LWA dwFlags);
-
-        public void ClickThrough()
-        {
-            int wl = GetWindowLong(this.Handle, GWL.ExStyle);
-            wl = wl | 0x80000 | 0x20;
-            SetWindowLong(this.Handle, GWL.ExStyle, wl);
-        }
-
      
+
+ 
         private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
         {
             if (panel5.Visible == true)
@@ -1005,6 +994,22 @@ namespace clockapp
             }
 
         }
+        [DllImport("user32.dll")]
+        public static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
+        const int WS_EX_TRANSPARENT = 0x00000020;
+        const int GWL_EXSTYLE = (-20);
+        const int WS_EX_LAYERED = 0x00080000;
+
+        void ClickThrough2()
+        {
+            SetWindowLong(this.Handle, GWL_EXSTYLE, WS_EX_LAYERED | WS_EX_TRANSPARENT);
+        }
+
+        
 
         private void mousetimer_2_Tick(object sender, EventArgs e)
         {
@@ -1015,6 +1020,12 @@ namespace clockapp
 
             int X_form1_mouseLocation = formZeroPosiontoScreen.X;
             int Y_form1_mouseLocation = formZeroPosiontoScreen.Y;
+           
+            if (Properties.Settings.Default.statethroghstop == true && firststarted_clickth2 == true)
+            {
+                firststarted_clickth2 = false;
+                ClickThrough2();
+            }
 
             if (Clocktoolcheck.CT == 1)// 체크했을때
             {

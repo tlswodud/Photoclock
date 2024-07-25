@@ -313,7 +313,7 @@ namespace clockapp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5, 5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("15, 15")]
         public global::System.Drawing.Point form2location {
             get {
                 return ((global::System.Drawing.Point)(this["form2location"]));

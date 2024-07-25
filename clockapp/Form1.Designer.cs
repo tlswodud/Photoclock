@@ -34,16 +34,16 @@
             iconButton9 = new FontAwesome.Sharp.IconButton();
             exitbotton = new FontAwesome.Sharp.IconButton();
             panel4 = new Panel();
+            panel6 = new Panel();
+            secondDash = new FontAwesome.Sharp.IconButton();
+            secondExit = new FontAwesome.Sharp.IconButton();
+            trackBar2 = new TrackBar();
             panel5 = new Panel();
             BGButton1 = new FontAwesome.Sharp.IconButton();
             saveButton = new FontAwesome.Sharp.IconButton();
             timebutton = new FontAwesome.Sharp.IconButton();
             colorbutton = new FontAwesome.Sharp.IconButton();
             sizebutton = new FontAwesome.Sharp.IconButton();
-            panel6 = new Panel();
-            secondDash = new FontAwesome.Sharp.IconButton();
-            secondExit = new FontAwesome.Sharp.IconButton();
-            trackBar2 = new TrackBar();
             label4 = new Label();
             label1 = new Label();
             label3 = new Label();
@@ -75,11 +75,12 @@
             mousetimer = new System.Windows.Forms.Timer(components);
             slidingTimer2 = new System.Windows.Forms.Timer(components);
             timer4 = new System.Windows.Forms.Timer(components);
+            exitPhotoclockToolStripMenuItem = new ToolStripMenuItem();
             panel2.SuspendLayout();
             panel4.SuspendLayout();
-            panel5.SuspendLayout();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trackBar2).BeginInit();
+            panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -95,7 +96,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(98, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(350, 34);
+            panel2.Size = new Size(336, 34);
             panel2.TabIndex = 1;
             panel2.Paint += panel2_Paint;
             panel2.MouseClick += panel2_MouseClick;
@@ -111,7 +112,7 @@
             iconButton9.IconChar = FontAwesome.Sharp.IconChar.None;
             iconButton9.IconColor = Color.Black;
             iconButton9.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton9.Location = new Point(6, 5);
+            iconButton9.Location = new Point(8, 6);
             iconButton9.Name = "iconButton9";
             iconButton9.Size = new Size(95, 23);
             iconButton9.TabIndex = 3;
@@ -131,7 +132,7 @@
             exitbotton.IconColor = Color.Black;
             exitbotton.IconFont = FontAwesome.Sharp.IconFont.Auto;
             exitbotton.IconSize = 25;
-            exitbotton.Location = new Point(304, 0);
+            exitbotton.Location = new Point(290, 0);
             exitbotton.Name = "exitbotton";
             exitbotton.Size = new Size(46, 34);
             exitbotton.TabIndex = 2;
@@ -145,9 +146,9 @@
             panel4.BackColor = Color.Snow;
             panel4.BackgroundImageLayout = ImageLayout.Stretch;
             panel4.BorderStyle = BorderStyle.FixedSingle;
-            panel4.Controls.Add(panel5);
             panel4.Controls.Add(panel6);
             panel4.Controls.Add(trackBar2);
+            panel4.Controls.Add(panel5);
             panel4.Controls.Add(label4);
             panel4.Controls.Add(label1);
             panel4.Controls.Add(label3);
@@ -156,11 +157,77 @@
             panel4.Dock = DockStyle.Fill;
             panel4.Location = new Point(98, 34);
             panel4.Name = "panel4";
-            panel4.Size = new Size(350, 179);
+            panel4.Size = new Size(336, 272);
             panel4.TabIndex = 2;
             panel4.DragDrop += panel4_DragDrop;
             panel4.DragEnter += panel4_DragEnter;
             panel4.MouseClick += panel4_MouseClick;
+            // 
+            // panel6
+            // 
+            panel6.BackColor = SystemColors.ButtonFace;
+            panel6.BorderStyle = BorderStyle.FixedSingle;
+            panel6.Controls.Add(secondDash);
+            panel6.Controls.Add(secondExit);
+            panel6.Dock = DockStyle.Top;
+            panel6.Location = new Point(0, 0);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(289, 34);
+            panel6.TabIndex = 14;
+            panel6.Visible = false;
+            panel6.MouseDown += panel6_MouseDown;
+            // 
+            // secondDash
+            // 
+            secondDash.BackColor = Color.Transparent;
+            secondDash.FlatAppearance.BorderColor = SystemColors.ButtonFace;
+            secondDash.FlatAppearance.BorderSize = 0;
+            secondDash.FlatStyle = FlatStyle.Flat;
+            secondDash.Font = new Font("Lucida Sans Typewriter", 9F);
+            secondDash.IconChar = FontAwesome.Sharp.IconChar.None;
+            secondDash.IconColor = Color.Black;
+            secondDash.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            secondDash.Location = new Point(4, 4);
+            secondDash.Name = "secondDash";
+            secondDash.Size = new Size(95, 23);
+            secondDash.TabIndex = 3;
+            secondDash.TabStop = false;
+            secondDash.Text = "DASHBOARD";
+            secondDash.UseVisualStyleBackColor = false;
+            secondDash.MouseClick += secondDash_MouseClick;
+            // 
+            // secondExit
+            // 
+            secondExit.Dock = DockStyle.Right;
+            secondExit.FlatAppearance.BorderColor = SystemColors.ButtonFace;
+            secondExit.FlatAppearance.BorderSize = 0;
+            secondExit.FlatStyle = FlatStyle.Flat;
+            secondExit.IconChar = FontAwesome.Sharp.IconChar.CircleLeft;
+            secondExit.IconColor = Color.Black;
+            secondExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            secondExit.IconSize = 25;
+            secondExit.Location = new Point(247, 0);
+            secondExit.Name = "secondExit";
+            secondExit.Size = new Size(40, 32);
+            secondExit.TabIndex = 2;
+            secondExit.TabStop = false;
+            secondExit.UseVisualStyleBackColor = true;
+            secondExit.MouseClick += secondExit_MouseClick;
+            // 
+            // trackBar2
+            // 
+            trackBar2.BackColor = Color.LightGray;
+            trackBar2.Dock = DockStyle.Right;
+            trackBar2.Location = new Point(289, 0);
+            trackBar2.Maximum = 100;
+            trackBar2.Minimum = 30;
+            trackBar2.Name = "trackBar2";
+            trackBar2.Orientation = Orientation.Vertical;
+            trackBar2.Size = new Size(45, 270);
+            trackBar2.TabIndex = 13;
+            trackBar2.Value = 30;
+            trackBar2.ValueChanged += trackBar2_ValueChanged;
+            trackBar2.MouseDown += trackBar2_MouseDown;
             // 
             // panel5
             // 
@@ -286,73 +353,6 @@
             sizebutton.UseVisualStyleBackColor = true;
             sizebutton.Click += sizebutton_Click;
             // 
-            // panel6
-            // 
-            panel6.BackColor = SystemColors.ButtonFace;
-            panel6.BorderStyle = BorderStyle.FixedSingle;
-            panel6.Controls.Add(secondDash);
-            panel6.Controls.Add(secondExit);
-            panel6.Dock = DockStyle.Top;
-            panel6.Location = new Point(0, 0);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(303, 34);
-            panel6.TabIndex = 12;
-            panel6.Visible = false;
-            panel6.MouseClick += panel6_MouseClick;
-            panel6.MouseDown += panel6_MouseDown;
-            // 
-            // secondDash
-            // 
-            secondDash.BackColor = Color.Transparent;
-            secondDash.FlatAppearance.BorderColor = SystemColors.ButtonFace;
-            secondDash.FlatAppearance.BorderSize = 0;
-            secondDash.FlatStyle = FlatStyle.Flat;
-            secondDash.Font = new Font("Lucida Sans Typewriter", 9F);
-            secondDash.IconChar = FontAwesome.Sharp.IconChar.None;
-            secondDash.IconColor = Color.Black;
-            secondDash.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            secondDash.Location = new Point(4, 4);
-            secondDash.Name = "secondDash";
-            secondDash.Size = new Size(95, 23);
-            secondDash.TabIndex = 3;
-            secondDash.TabStop = false;
-            secondDash.Text = "DASHBOARD";
-            secondDash.UseVisualStyleBackColor = false;
-            secondDash.MouseClick += secondDash_MouseClick;
-            // 
-            // secondExit
-            // 
-            secondExit.Dock = DockStyle.Right;
-            secondExit.FlatAppearance.BorderColor = SystemColors.ButtonFace;
-            secondExit.FlatAppearance.BorderSize = 0;
-            secondExit.FlatStyle = FlatStyle.Flat;
-            secondExit.IconChar = FontAwesome.Sharp.IconChar.CircleLeft;
-            secondExit.IconColor = Color.Black;
-            secondExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            secondExit.IconSize = 25;
-            secondExit.Location = new Point(261, 0);
-            secondExit.Name = "secondExit";
-            secondExit.Size = new Size(40, 32);
-            secondExit.TabIndex = 2;
-            secondExit.TabStop = false;
-            secondExit.UseVisualStyleBackColor = true;
-            secondExit.MouseClick += secondExit_MouseClick;
-            // 
-            // trackBar2
-            // 
-            trackBar2.BackColor = Color.LightGray;
-            trackBar2.Dock = DockStyle.Right;
-            trackBar2.Location = new Point(303, 0);
-            trackBar2.Maximum = 100;
-            trackBar2.Minimum = 30;
-            trackBar2.Name = "trackBar2";
-            trackBar2.Orientation = Orientation.Vertical;
-            trackBar2.Size = new Size(45, 177);
-            trackBar2.TabIndex = 5;
-            trackBar2.Value = 30;
-            trackBar2.ValueChanged += trackBar2_ValueChanged;
-            trackBar2.MouseDown += trackBar2_MouseDown;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -409,7 +409,7 @@
             pictureBox2.ErrorImage = null;
             pictureBox2.Location = new Point(0, 0);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(348, 177);
+            pictureBox2.Size = new Size(334, 270);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 11;
             pictureBox2.TabStop = false;
@@ -434,7 +434,7 @@
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(100, 213);
+            panel3.Size = new Size(100, 306);
             panel3.TabIndex = 0;
             panel3.MouseClick += panel3_MouseClick;
             panel3.MouseDown += panel3_MouseDown;
@@ -559,7 +559,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(98, 213);
+            panel1.Size = new Size(98, 306);
             panel1.TabIndex = 0;
             // 
             // toolTip1
@@ -580,13 +580,13 @@
             // 
             // contextMenuStrip1
             // 
-            contextMenuStrip1.BackColor = Color.Gainsboro;
-            contextMenuStrip1.ImeMode = ImeMode.On;
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { clickThroughToolStripMenuItem, stopwatchToolStripMenuItem, clockToolStripMenuItem, titlebarhiddenToolStripMenuItem, stopwatchToolStripMenuItem1, clockToolStripMenuItem1 });
+            contextMenuStrip1.BackColor = Color.Lavender;
+            contextMenuStrip1.ImeMode = ImeMode.NoControl;
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { exitPhotoclockToolStripMenuItem, clickThroughToolStripMenuItem, stopwatchToolStripMenuItem, clockToolStripMenuItem, titlebarhiddenToolStripMenuItem, stopwatchToolStripMenuItem1, clockToolStripMenuItem1 });
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.ShowCheckMargin = true;
             contextMenuStrip1.ShowImageMargin = false;
-            contextMenuStrip1.Size = new Size(195, 152);
+            contextMenuStrip1.Size = new Size(195, 198);
             // 
             // clickThroughToolStripMenuItem
             // 
@@ -656,13 +656,23 @@
             // 
             mousetimer.Tick += mousetimer_Tick;
             // 
+            // exitPhotoclockToolStripMenuItem
+            // 
+            exitPhotoclockToolStripMenuItem.BackColor = Color.MistyRose;
+            exitPhotoclockToolStripMenuItem.Font = new Font("경기천년제목V Bold", 11.25F, FontStyle.Bold);
+            exitPhotoclockToolStripMenuItem.Name = "exitPhotoclockToolStripMenuItem";
+            exitPhotoclockToolStripMenuItem.Size = new Size(194, 24);
+            exitPhotoclockToolStripMenuItem.Text = "Exit Photoclock";
+            exitPhotoclockToolStripMenuItem.Click += exitPhotoclockToolStripMenuItem_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.Gray;
-            ClientSize = new Size(448, 213);
+            ClientSize = new Size(434, 306);
+            ControlBox = false;
             Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -671,7 +681,9 @@
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;
+            MinimumSize = new Size(100, 100);
             Name = "Form1";
+            ShowInTaskbar = false;
             Text = " ";
             TopMost = true;
             FormClosed += Form1_FormClosed;
@@ -680,9 +692,9 @@
             panel2.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
-            panel5.ResumeLayout(false);
             panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)trackBar2).EndInit();
+            panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -698,7 +710,6 @@
         private FontAwesome.Sharp.IconButton iconButton9;
         private System.Windows.Forms.Timer timer1;
         private Label label1;
-        private TrackBar trackBar2;
         private Panel panel3;
         private FontAwesome.Sharp.IconButton trackbutton;
         private FontAwesome.Sharp.IconButton pauserun;
@@ -734,9 +745,11 @@
         private ToolStripMenuItem clockToolStripMenuItem1;
         private System.Windows.Forms.Timer mousetimer;
         private System.Windows.Forms.Timer slidingTimer2;
+        private System.Windows.Forms.Timer timer4;
+        private TrackBar trackBar2;
         private Panel panel6;
         private FontAwesome.Sharp.IconButton secondDash;
         private FontAwesome.Sharp.IconButton secondExit;
-        private System.Windows.Forms.Timer timer4;
+        private ToolStripMenuItem exitPhotoclockToolStripMenuItem;
     }
 }

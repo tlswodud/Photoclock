@@ -81,6 +81,21 @@ namespace calendar
             label2.Visible = false;
             label5.Visible = false;
             label6.Visible = false;
+
+
+            panel1.Width = 37;//40
+            panel3.Width = 37;
+            pictureBox1.Visible = false;
+            btnmenu.Dock = DockStyle.Top;
+            foreach (Button menubtn in this.panel3.Controls.OfType<Button>())
+            {
+                menubtn.Text = "";
+                menubtn.ImageAlign = ContentAlignment.MiddleLeft;
+                menubtn.Padding = new Padding(0);
+
+            }
+
+
         }
 
 
@@ -156,16 +171,7 @@ namespace calendar
             base.WndProc(ref m);
         }
 
-        protected override CreateParams CreateParams
-
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.Style |= 0x20000; // <--- use 0x20000
-                return cp;
-            }
-        }
+      
         private void Form1_Resize(object sender, EventArgs e)
         {
             AdjustForm();
@@ -232,8 +238,8 @@ namespace calendar
         {
             if (this.panel1.Width > 104)
             {
-                panel1.Width = 40;//40
-                panel3.Width = 40;
+                panel1.Width = 37;//40
+                panel3.Width = 37;
                 pictureBox1.Visible = false;
                 btnmenu.Dock = DockStyle.Top;
                 foreach (Button menubtn in this.panel3.Controls.OfType<Button>())
@@ -300,7 +306,7 @@ namespace calendar
 
         private void optionMenucollapso()
         {
-            if (this.panel1.Width == 40)
+            if (this.panel1.Width == 37)
             {
                 panel5.Width = 37;
                 foreach (Button menubtn in this.panel5.Controls.OfType<Button>())
@@ -331,16 +337,13 @@ namespace calendar
             if (monthCalendar1.Visible == true)
             {
                 monthCalendar1.Visible = false;
-                //label1.Location = new Point(19, 32);
-                //trackBar2.Location = new Point(197, 16);
                 panel6.Location = new Point(19, 30);
                 panel6.Size = new Size(334, 400);
             }
             else
             {
                 monthCalendar1.Visible = true;
-                //label1.Location = new Point(19, 226);
-                //trackBar2.Location = new Point(197, 213);
+              
                 panel6.Location = new Point(19, 203);
                 panel6.Size = new Size(334, 220);
             }
@@ -760,7 +763,14 @@ namespace calendar
             pictureBox2.Image = null;
             panel4.BackgroundImage = null;
             label4.ForeColor = Color.Black;
-
+            foreach (Button bormenu1 in this.panel5.Controls.OfType<Button>())
+            {
+                bormenu1.FlatAppearance.BorderColor = Color.LightGray;
+            }
+            foreach (Button bormenu1_2 in this.panel3.Controls.OfType<Button>())
+            {
+                bormenu1_2.FlatAppearance.BorderColor = Color.LightGray;
+            }
             iconButton9.BackColor = Color.Transparent;
         }
 

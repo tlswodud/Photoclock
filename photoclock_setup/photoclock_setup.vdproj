@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:photoclock"
+"ProjectName" = "8:photoclock_setup"
 "LanguageId" = "3:1042"
 "CodePage" = "3:949"
 "UILanguageId" = "3:1042"
@@ -123,6 +123,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -363,7 +371,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:photoclock_setup"
         "ProductCode" = "8:{439B779D-03B1-459A-9ADA-43BB4EBB8D59}"
-        "PackageCode" = "8:{500A7C3C-A9AE-4AF9-9F13-DFC399CA4847}"
+        "PackageCode" = "8:{CF822E7A-5A1E-47E4-975F-42662FB65A66}"
         "UpgradeCode" = "8:{A89B505F-7F5F-401F-B7D7-7E57C5C04746}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

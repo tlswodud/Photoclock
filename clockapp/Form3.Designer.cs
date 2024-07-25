@@ -31,7 +31,6 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
             panel2 = new Panel();
-            maxwindow = new FontAwesome.Sharp.IconButton();
             iconButton9 = new FontAwesome.Sharp.IconButton();
             exitbotton = new FontAwesome.Sharp.IconButton();
             trackBar2 = new TrackBar();
@@ -53,7 +52,6 @@
             sizebutton = new FontAwesome.Sharp.IconButton();
             timer1 = new System.Windows.Forms.Timer(components);
             panel3 = new Panel();
-            iconButton1 = new FontAwesome.Sharp.IconButton();
             optionbutton = new FontAwesome.Sharp.IconButton();
             trackbutton = new FontAwesome.Sharp.IconButton();
             btnmenu = new FontAwesome.Sharp.IconButton();
@@ -76,32 +74,15 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ButtonFace;
-            panel2.Controls.Add(maxwindow);
             panel2.Controls.Add(iconButton9);
             panel2.Controls.Add(exitbotton);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(98, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(373, 36);
+            panel2.Size = new Size(374, 34);
             panel2.TabIndex = 1;
             panel2.MouseClick += panel2_MouseClick;
             panel2.MouseDown += panel2_MouseDown;
-            // 
-            // maxwindow
-            // 
-            maxwindow.Dock = DockStyle.Right;
-            maxwindow.FlatAppearance.BorderSize = 0;
-            maxwindow.FlatStyle = FlatStyle.Flat;
-            maxwindow.IconChar = FontAwesome.Sharp.IconChar.CirclePlus;
-            maxwindow.IconColor = Color.Black;
-            maxwindow.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            maxwindow.IconSize = 25;
-            maxwindow.Location = new Point(281, 0);
-            maxwindow.Name = "maxwindow";
-            maxwindow.Size = new Size(46, 36);
-            maxwindow.TabIndex = 4;
-            maxwindow.UseVisualStyleBackColor = true;
-            maxwindow.MouseClick += maxwindow_MouseClick;
             // 
             // iconButton9
             // 
@@ -112,7 +93,7 @@
             iconButton9.IconChar = FontAwesome.Sharp.IconChar.None;
             iconButton9.IconColor = Color.Black;
             iconButton9.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton9.Location = new Point(6, 9);
+            iconButton9.Location = new Point(8, 7);
             iconButton9.Name = "iconButton9";
             iconButton9.Size = new Size(95, 23);
             iconButton9.TabIndex = 3;
@@ -130,9 +111,9 @@
             exitbotton.IconColor = Color.Black;
             exitbotton.IconFont = FontAwesome.Sharp.IconFont.Auto;
             exitbotton.IconSize = 25;
-            exitbotton.Location = new Point(327, 0);
+            exitbotton.Location = new Point(328, 0);
             exitbotton.Name = "exitbotton";
-            exitbotton.Size = new Size(46, 36);
+            exitbotton.Size = new Size(46, 34);
             exitbotton.TabIndex = 2;
             exitbotton.UseVisualStyleBackColor = true;
             exitbotton.MouseClick += exitbotton_MouseClick;
@@ -140,11 +121,11 @@
             // trackBar2
             // 
             trackBar2.BackColor = Color.LightGray;
-            trackBar2.Location = new Point(240, 143);
+            trackBar2.Location = new Point(249, 143);
             trackBar2.Maximum = 100;
             trackBar2.Minimum = 30;
             trackBar2.Name = "trackBar2";
-            trackBar2.Size = new Size(113, 45);
+            trackBar2.Size = new Size(104, 45);
             trackBar2.TabIndex = 5;
             trackBar2.Value = 30;
             trackBar2.ValueChanged += trackBar2_ValueChanged;
@@ -163,9 +144,9 @@
             panel4.Controls.Add(trackBar2);
             panel4.Controls.Add(pictureBox2);
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(98, 36);
+            panel4.Location = new Point(98, 34);
             panel4.Name = "panel4";
-            panel4.Size = new Size(373, 445);
+            panel4.Size = new Size(374, 447);
             panel4.TabIndex = 2;
             panel4.DragDrop += panel4_DragDrop;
             panel4.DragEnter += panel4_DragEnter;
@@ -362,7 +343,7 @@
             pictureBox2.Dock = DockStyle.Fill;
             pictureBox2.Location = new Point(0, 0);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(371, 443);
+            pictureBox2.Size = new Size(372, 445);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 17;
             pictureBox2.TabStop = false;
@@ -398,7 +379,6 @@
             // panel3
             // 
             panel3.BackColor = Color.LightGray;
-            panel3.Controls.Add(iconButton1);
             panel3.Controls.Add(optionbutton);
             panel3.Controls.Add(trackbutton);
             panel3.Controls.Add(sizebutton);
@@ -412,26 +392,6 @@
             panel3.MouseClick += panel3_MouseClick;
             panel3.MouseDown += panel3_MouseDown;
             // 
-            // iconButton1
-            // 
-            iconButton1.FlatAppearance.BorderSize = 0;
-            iconButton1.FlatStyle = FlatStyle.Flat;
-            iconButton1.Font = new Font("Lucida Sans", 7F);
-            iconButton1.IconChar = FontAwesome.Sharp.IconChar.Pencil;
-            iconButton1.IconColor = Color.Black;
-            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton1.IconSize = 25;
-            iconButton1.Location = new Point(0, 140);
-            iconButton1.Name = "iconButton1";
-            iconButton1.Size = new Size(110, 26);
-            iconButton1.TabIndex = 9;
-            iconButton1.Tag = "Record";
-            iconButton1.Text = "startTime";
-            iconButton1.TextAlign = ContentAlignment.MiddleLeft;
-            iconButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton1.UseVisualStyleBackColor = true;
-            iconButton1.Click += iconButton1_Click_1;
-            // 
             // optionbutton
             // 
             optionbutton.FlatAppearance.BorderSize = 0;
@@ -441,7 +401,7 @@
             optionbutton.IconColor = Color.Black;
             optionbutton.IconFont = FontAwesome.Sharp.IconFont.Auto;
             optionbutton.IconSize = 25;
-            optionbutton.Location = new Point(0, 170);
+            optionbutton.Location = new Point(0, 142);
             optionbutton.Name = "optionbutton";
             optionbutton.Size = new Size(110, 26);
             optionbutton.TabIndex = 8;
@@ -516,7 +476,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.Gray;
-            ClientSize = new Size(471, 481);
+            ClientSize = new Size(472, 481);
             Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -525,7 +485,9 @@
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;
+            MinimumSize = new Size(100, 100);
             Name = "Form3";
+            ShowInTaskbar = false;
             TopMost = true;
             FormClosed += Form3_FormClosed;
             Load += Form3_Load;
@@ -549,7 +511,6 @@
         private Panel panel4;
         private FontAwesome.Sharp.IconButton exitbotton;
         private FontAwesome.Sharp.IconButton iconButton9;
-        private FontAwesome.Sharp.IconButton maxwindow;
         private System.Windows.Forms.Timer timer1;
         private TrackBar trackBar2;
         private Panel panel3;
@@ -572,7 +533,6 @@
         private Label label6;
         private Label label5;
         private Label label2;
-        private FontAwesome.Sharp.IconButton iconButton1;
         private PictureBox pictureBox2;
         private ColorDialog color3;
         private ColorDialog colorDialog1;

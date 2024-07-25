@@ -82,7 +82,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(98, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(350, 34);
+            panel2.Size = new Size(354, 34);
             panel2.TabIndex = 1;
             panel2.MouseClick += panel2_MouseClick;
             panel2.MouseDown += panel2_MouseDown;
@@ -96,7 +96,7 @@
             maxwindow.IconColor = Color.Black;
             maxwindow.IconFont = FontAwesome.Sharp.IconFont.Auto;
             maxwindow.IconSize = 25;
-            maxwindow.Location = new Point(258, 0);
+            maxwindow.Location = new Point(262, 0);
             maxwindow.Name = "maxwindow";
             maxwindow.Size = new Size(46, 34);
             maxwindow.TabIndex = 4;
@@ -133,7 +133,7 @@
             exitbotton.IconColor = Color.Black;
             exitbotton.IconFont = FontAwesome.Sharp.IconFont.Auto;
             exitbotton.IconSize = 25;
-            exitbotton.Location = new Point(304, 0);
+            exitbotton.Location = new Point(308, 0);
             exitbotton.Name = "exitbotton";
             exitbotton.Size = new Size(46, 34);
             exitbotton.TabIndex = 2;
@@ -156,7 +156,7 @@
             panel4.Dock = DockStyle.Fill;
             panel4.Location = new Point(98, 34);
             panel4.Name = "panel4";
-            panel4.Size = new Size(350, 179);
+            panel4.Size = new Size(354, 256);
             panel4.TabIndex = 2;
             panel4.DragDrop += panel4_DragDrop;
             panel4.DragEnter += panel4_DragEnter;
@@ -279,7 +279,7 @@
             panel6.Dock = DockStyle.Top;
             panel6.Location = new Point(0, 0);
             panel6.Name = "panel6";
-            panel6.Size = new Size(303, 34);
+            panel6.Size = new Size(307, 34);
             panel6.TabIndex = 9;
             panel6.Visible = false;
             panel6.MouseClick += panel6_MouseClick;
@@ -313,7 +313,7 @@
             secondExit2.IconColor = Color.Black;
             secondExit2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             secondExit2.IconSize = 25;
-            secondExit2.Location = new Point(261, 0);
+            secondExit2.Location = new Point(265, 0);
             secondExit2.Name = "secondExit2";
             secondExit2.Size = new Size(40, 32);
             secondExit2.TabIndex = 2;
@@ -334,12 +334,12 @@
             trackBar2.AutoSize = false;
             trackBar2.BackColor = Color.LightGray;
             trackBar2.Dock = DockStyle.Right;
-            trackBar2.Location = new Point(303, 0);
+            trackBar2.Location = new Point(307, 0);
             trackBar2.Maximum = 100;
             trackBar2.Minimum = 30;
             trackBar2.Name = "trackBar2";
             trackBar2.Orientation = Orientation.Vertical;
-            trackBar2.Size = new Size(45, 177);
+            trackBar2.Size = new Size(45, 254);
             trackBar2.TabIndex = 5;
             trackBar2.Value = 30;
             trackBar2.ValueChanged += trackBar2_ValueChanged;
@@ -379,7 +379,7 @@
             pictureBox2.Dock = DockStyle.Fill;
             pictureBox2.Location = new Point(0, 0);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(348, 177);
+            pictureBox2.Size = new Size(352, 254);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
@@ -424,7 +424,7 @@
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(100, 213);
+            panel3.Size = new Size(100, 290);
             panel3.TabIndex = 0;
             panel3.MouseClick += panel3_MouseClick;
             panel3.MouseDown += panel3_MouseDown;
@@ -503,7 +503,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(98, 213);
+            panel1.Size = new Size(98, 290);
             panel1.TabIndex = 0;
             // 
             // SlidingTimer
@@ -524,7 +524,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.Gray;
-            ClientSize = new Size(448, 213);
+            ClientSize = new Size(452, 290);
+            ControlBox = false;
             Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -533,7 +534,9 @@
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;
+            MinimumSize = new Size(100, 100);
             Name = "Form2";
+            ShowInTaskbar = false;
             TopMost = true;
             FormClosed += Form2_FormClosed;
             Load += Form1_Load;
