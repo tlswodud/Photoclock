@@ -37,7 +37,7 @@ namespace clockapp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("464")]
+        [global::System.Configuration.DefaultSettingValueAttribute("330")]
         public int FormWidth {
             get {
                 return ((int)(this["FormWidth"]));
@@ -49,7 +49,7 @@ namespace clockapp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("252")]
+        [global::System.Configuration.DefaultSettingValueAttribute("225")]
         public int FormHeight {
             get {
                 return ((int)(this["FormHeight"]));
@@ -133,7 +133,7 @@ namespace clockapp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("464")]
+        [global::System.Configuration.DefaultSettingValueAttribute("330")]
         public int FormWidth2 {
             get {
                 return ((int)(this["FormWidth2"]));
@@ -145,7 +145,7 @@ namespace clockapp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("252")]
+        [global::System.Configuration.DefaultSettingValueAttribute("225")]
         public int FormHeight2 {
             get {
                 return ((int)(this["FormHeight2"]));
@@ -541,7 +541,7 @@ namespace clockapp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool contextstop {
             get {
                 return ((bool)(this["contextstop"]));
@@ -553,7 +553,7 @@ namespace clockapp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool contextclock {
             get {
                 return ((bool)(this["contextclock"]));
@@ -565,7 +565,7 @@ namespace clockapp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool statethroghstop {
             get {
                 return ((bool)(this["statethroghstop"]));
@@ -577,7 +577,7 @@ namespace clockapp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool statethroghclock {
             get {
                 return ((bool)(this["statethroghclock"]));

@@ -94,7 +94,10 @@ namespace clockapp
 
         private void panel2_MouseDown(object sender, MouseEventArgs e) // 마우스 다운을 통해 핸들기능 추가
         {
-
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
 
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
@@ -105,6 +108,10 @@ namespace clockapp
 
         private void panel4_MouseDown(object sender, MouseEventArgs e)
         {
+            if (panel5.Visible == true)
+            {
+                panel5.Visible = false;
+            }
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
@@ -575,11 +582,12 @@ namespace clockapp
                 this.BackColor = Color.Gray;
 
                 trackBar2.BackColor = Color.LightGray;
+
                 foreach(Button bormenu1 in this.panel5.Controls.OfType<Button>())
                 {
                     bormenu1.FlatAppearance.BorderColor = Color.LightGray;
                 }
-                foreach (Button bormenu1_3 in this.panel5.Controls.OfType<Button>())
+                foreach (Button bormenu1_3 in this.panel3.Controls.OfType<Button>())
                 {
                     bormenu1_3.FlatAppearance.BorderColor = Color.LightGray;
                 }
@@ -768,12 +776,9 @@ namespace clockapp
                 DialogResult result = this.color2.ShowDialog();
 
 
-
                 if (result == DialogResult.OK)
                 {
                     this.BackColor = color2.Color;
-
-
                 }
             }
         }
@@ -790,7 +795,6 @@ namespace clockapp
             {
 
                 DialogResult result = this.color2.ShowDialog();
-
 
 
                 if (result == DialogResult.OK)
@@ -924,7 +928,7 @@ namespace clockapp
  
         private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
         {
-            if (panel5.Visible == true)
+            if(panel5.Visible == true)
             {
                 panel5.Visible = false;
             }

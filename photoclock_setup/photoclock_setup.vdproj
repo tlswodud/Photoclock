@@ -88,15 +88,20 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.8"
                     {
-                    "Name" = "8:Microsoft .NET Framework 4.6.1(x86 및 x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    "Name" = "8:Microsoft .NET Framework 4.8(x86 및 x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.8"
                     }
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.CoreRuntime.8.0.x64"
                     {
                     "Name" = "8:.NET 런타임 8.0.4 (x64)"
                     "ProductCode" = "8:Microsoft.NetCore.CoreRuntime.8.0.x64"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.NetCore.DesktopRuntime.8.0.x64"
+                    {
+                    "Name" = "8:.NET 데스크톱 런타임 8.0.4 (x64)"
+                    "ProductCode" = "8:Microsoft.NetCore.DesktopRuntime.8.0.x64"
                     }
                 }
             }
@@ -371,7 +376,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:photoclock_setup"
         "ProductCode" = "8:{439B779D-03B1-459A-9ADA-43BB4EBB8D59}"
-        "PackageCode" = "8:{CF822E7A-5A1E-47E4-975F-42662FB65A66}"
+        "PackageCode" = "8:{E2A97AA6-4C6D-49FC-AE45-00943562CA37}"
         "UpgradeCode" = "8:{A89B505F-7F5F-401F-B7D7-7E57C5C04746}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

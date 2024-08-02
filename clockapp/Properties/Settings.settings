@@ -6,10 +6,10 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="FormWidth" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">464</Value>
+      <Value Profile="(Default)">330</Value>
     </Setting>
     <Setting Name="FormHeight" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">252</Value>
+      <Value Profile="(Default)">225</Value>
     </Setting>
     <Setting Name="bordercolor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Gray</Value>
@@ -30,10 +30,10 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="FormWidth2" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">464</Value>
+      <Value Profile="(Default)">330</Value>
     </Setting>
     <Setting Name="FormHeight2" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">252</Value>
+      <Value Profile="(Default)">225</Value>
     </Setting>
     <Setting Name="bordercolor2" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Gray</Value>
@@ -132,16 +132,16 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="contextstop" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="contextclock" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="statethroghstop" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="statethroghclock" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Dashbuttoncolor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Transparent</Value>

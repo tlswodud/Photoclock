@@ -43,7 +43,7 @@ namespace clockapp
         Form2 form2 = new Form2();
         Form3 form3 = new Form3();
 
-
+      
 
         private Point startPoint;
         bool DoubleClickcheck = false;
@@ -55,7 +55,10 @@ namespace clockapp
             InitializeComponent();
 
             CheckRunThisProcess();
-
+           
+            //trayicon 둥글게 디자인
+            contextMenuStrip1.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, contextMenuStrip1.Width, contextMenuStrip1.Height, 25, 25));
+            
             //
             mousetimer.Start();
             mousetimer.Interval = 1;
@@ -208,8 +211,8 @@ namespace clockapp
             secondDash.MouseUp += secondDash_MouseClick;
             iconButton9.MouseUp += iconButton9_MouseClick; //마우스 클릭 받기 
 
-            this.Width = Properties.Settings.Default.FormWidth;
-            this.Height = Properties.Settings.Default.FormHeight;
+            this.Width =  Properties.Settings.Default.FormWidth;
+            this.Height =   Properties.Settings.Default.FormHeight;
             BackgroundfilePath = Properties.Settings.Default.backgroundimg;
 
             this.BackColor = Properties.Settings.Default.bordercolor;
@@ -276,8 +279,7 @@ namespace clockapp
             }
 
             
-            //trayicon 둥글게 디자인
-            contextMenuStrip1.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, contextMenuStrip1.Width, contextMenuStrip1.Height, 20, 20));
+           
 
 
             if (System.IO.File.Exists(BackgroundfilePath) && BackgroundfilePath != "")
@@ -757,7 +759,7 @@ namespace clockapp
         {
             if (Flagstop == true)
             {
-                var dtyyMM = dtplay.ToString("yy/MM");
+                var dtyyMM = dtplay.ToString("yy_MM");
 
                 var savePath = "C:\\clocktxtfolder";
 
@@ -800,7 +802,7 @@ namespace clockapp
                 ToolTip toolTip = new ToolTip();
 
                 toolTip.AutoPopDelay = 5000;
-                toolTip.InitialDelay = 300;
+                toolTip.InitialDelay = 100;
 
                 toolTip.SetToolTip(saveButton, "Plz press stop button");
             }
@@ -1361,6 +1363,17 @@ namespace clockapp
         private void panel6_MouseDown(object sender, MouseEventArgs e)
         {
 
+            if (e.Button == MouseButtons.Right)
+            {
+
+                DialogResult result = color.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    this.BackColor = color.Color;
+                }
+
+            }
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
 
@@ -1377,10 +1390,8 @@ namespace clockapp
 
                 DialogResult result = color.ShowDialog();
 
-
                 if (result == DialogResult.OK)
                 {
-                    // Set form background to the selected color.
                     this.BackColor = color.Color;
                 }
 

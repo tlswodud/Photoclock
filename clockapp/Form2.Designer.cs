@@ -182,7 +182,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(76, 117);
             label2.Name = "label2";
-            label2.Size = new Size(39, 15);
+            label2.Size = new Size(38, 15);
             label2.TabIndex = 11;
             label2.Text = "label2";
             // 
@@ -383,7 +383,6 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
-            pictureBox2.Visible = false;
             pictureBox2.Click += pictureBox2_Click;
             pictureBox2.MouseDown += pictureBox2_MouseDown;
             // 

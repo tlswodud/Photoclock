@@ -65,6 +65,7 @@
             fontDialog1 = new FontDialog();
             notifyIcon1 = new NotifyIcon(components);
             contextMenuStrip1 = new ContextMenuStrip(components);
+            exitPhotoclockToolStripMenuItem = new ToolStripMenuItem();
             clickThroughToolStripMenuItem = new ToolStripMenuItem();
             stopwatchToolStripMenuItem = new ToolStripMenuItem();
             clockToolStripMenuItem = new ToolStripMenuItem();
@@ -75,7 +76,6 @@
             mousetimer = new System.Windows.Forms.Timer(components);
             slidingTimer2 = new System.Windows.Forms.Timer(components);
             timer4 = new System.Windows.Forms.Timer(components);
-            exitPhotoclockToolStripMenuItem = new ToolStripMenuItem();
             panel2.SuspendLayout();
             panel4.SuspendLayout();
             panel6.SuspendLayout();
@@ -96,7 +96,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(98, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(336, 34);
+            panel2.Size = new Size(266, 34);
             panel2.TabIndex = 1;
             panel2.Paint += panel2_Paint;
             panel2.MouseClick += panel2_MouseClick;
@@ -132,7 +132,7 @@
             exitbotton.IconColor = Color.Black;
             exitbotton.IconFont = FontAwesome.Sharp.IconFont.Auto;
             exitbotton.IconSize = 25;
-            exitbotton.Location = new Point(290, 0);
+            exitbotton.Location = new Point(220, 0);
             exitbotton.Name = "exitbotton";
             exitbotton.Size = new Size(46, 34);
             exitbotton.TabIndex = 2;
@@ -157,7 +157,7 @@
             panel4.Dock = DockStyle.Fill;
             panel4.Location = new Point(98, 34);
             panel4.Name = "panel4";
-            panel4.Size = new Size(336, 272);
+            panel4.Size = new Size(266, 222);
             panel4.TabIndex = 2;
             panel4.DragDrop += panel4_DragDrop;
             panel4.DragEnter += panel4_DragEnter;
@@ -172,7 +172,7 @@
             panel6.Dock = DockStyle.Top;
             panel6.Location = new Point(0, 0);
             panel6.Name = "panel6";
-            panel6.Size = new Size(289, 34);
+            panel6.Size = new Size(219, 34);
             panel6.TabIndex = 14;
             panel6.Visible = false;
             panel6.MouseDown += panel6_MouseDown;
@@ -206,7 +206,7 @@
             secondExit.IconColor = Color.Black;
             secondExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
             secondExit.IconSize = 25;
-            secondExit.Location = new Point(247, 0);
+            secondExit.Location = new Point(177, 0);
             secondExit.Name = "secondExit";
             secondExit.Size = new Size(40, 32);
             secondExit.TabIndex = 2;
@@ -218,12 +218,12 @@
             // 
             trackBar2.BackColor = Color.LightGray;
             trackBar2.Dock = DockStyle.Right;
-            trackBar2.Location = new Point(289, 0);
+            trackBar2.Location = new Point(219, 0);
             trackBar2.Maximum = 100;
             trackBar2.Minimum = 30;
             trackBar2.Name = "trackBar2";
             trackBar2.Orientation = Orientation.Vertical;
-            trackBar2.Size = new Size(45, 270);
+            trackBar2.Size = new Size(45, 220);
             trackBar2.TabIndex = 13;
             trackBar2.Value = 30;
             trackBar2.ValueChanged += trackBar2_ValueChanged;
@@ -409,7 +409,7 @@
             pictureBox2.ErrorImage = null;
             pictureBox2.Location = new Point(0, 0);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(334, 270);
+            pictureBox2.Size = new Size(264, 220);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 11;
             pictureBox2.TabStop = false;
@@ -434,7 +434,7 @@
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(100, 306);
+            panel3.Size = new Size(100, 256);
             panel3.TabIndex = 0;
             panel3.MouseClick += panel3_MouseClick;
             panel3.MouseDown += panel3_MouseDown;
@@ -559,7 +559,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(98, 306);
+            panel1.Size = new Size(98, 256);
             panel1.TabIndex = 0;
             // 
             // toolTip1
@@ -586,7 +586,16 @@
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.ShowCheckMargin = true;
             contextMenuStrip1.ShowImageMargin = false;
-            contextMenuStrip1.Size = new Size(195, 198);
+            contextMenuStrip1.Size = new Size(195, 176);
+            // 
+            // exitPhotoclockToolStripMenuItem
+            // 
+            exitPhotoclockToolStripMenuItem.BackColor = Color.MistyRose;
+            exitPhotoclockToolStripMenuItem.Font = new Font("경기천년제목V Bold", 11.25F, FontStyle.Bold);
+            exitPhotoclockToolStripMenuItem.Name = "exitPhotoclockToolStripMenuItem";
+            exitPhotoclockToolStripMenuItem.Size = new Size(194, 24);
+            exitPhotoclockToolStripMenuItem.Text = "Exit Photoclock";
+            exitPhotoclockToolStripMenuItem.Click += exitPhotoclockToolStripMenuItem_Click;
             // 
             // clickThroughToolStripMenuItem
             // 
@@ -656,22 +665,13 @@
             // 
             mousetimer.Tick += mousetimer_Tick;
             // 
-            // exitPhotoclockToolStripMenuItem
-            // 
-            exitPhotoclockToolStripMenuItem.BackColor = Color.MistyRose;
-            exitPhotoclockToolStripMenuItem.Font = new Font("경기천년제목V Bold", 11.25F, FontStyle.Bold);
-            exitPhotoclockToolStripMenuItem.Name = "exitPhotoclockToolStripMenuItem";
-            exitPhotoclockToolStripMenuItem.Size = new Size(194, 24);
-            exitPhotoclockToolStripMenuItem.Text = "Exit Photoclock";
-            exitPhotoclockToolStripMenuItem.Click += exitPhotoclockToolStripMenuItem_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.Gray;
-            ClientSize = new Size(434, 306);
+            ClientSize = new Size(364, 256);
             ControlBox = false;
             Controls.Add(panel4);
             Controls.Add(panel2);

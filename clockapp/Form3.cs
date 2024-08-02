@@ -443,7 +443,7 @@ namespace calendar
 
         private void readfile()
         {
-            string dtyyMM = monthCalendar1.SelectionStart.ToString("yy/MM");
+            string dtyyMM = monthCalendar1.SelectionStart.ToString("yy_MM");
             string path = $"C:\\clocktxtfolder\\clockapptest_{dtyyMM}.txt";
 
             if (System.IO.File.Exists(path) == false)
