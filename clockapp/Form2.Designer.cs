@@ -37,7 +37,6 @@
             panel4 = new Panel();
             panel5 = new Panel();
             label2 = new Label();
-            iconButton1 = new FontAwesome.Sharp.IconButton();
             backgroundbutton = new FontAwesome.Sharp.IconButton();
             colorbutton = new FontAwesome.Sharp.IconButton();
             sizebutton = new FontAwesome.Sharp.IconButton();
@@ -168,13 +167,12 @@
             panel5.BackColor = Color.LightGray;
             panel5.BorderStyle = BorderStyle.FixedSingle;
             panel5.Controls.Add(label2);
-            panel5.Controls.Add(iconButton1);
             panel5.Controls.Add(backgroundbutton);
             panel5.Controls.Add(colorbutton);
             panel5.Controls.Add(sizebutton);
             panel5.Location = new Point(-1, 27);
             panel5.Name = "panel5";
-            panel5.Size = new Size(99, 122);
+            panel5.Size = new Size(99, 94);
             panel5.TabIndex = 6;
             // 
             // label2
@@ -185,27 +183,6 @@
             label2.Size = new Size(38, 15);
             label2.TabIndex = 11;
             label2.Text = "label2";
-            // 
-            // iconButton1
-            // 
-            iconButton1.FlatAppearance.BorderSize = 0;
-            iconButton1.FlatStyle = FlatStyle.Flat;
-            iconButton1.Font = new Font("Lucida Sans", 7F);
-            iconButton1.IconChar = FontAwesome.Sharp.IconChar.CirclePlus;
-            iconButton1.IconColor = Color.Black;
-            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton1.IconSize = 25;
-            iconButton1.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton1.Location = new Point(-1, 87);
-            iconButton1.Name = "iconButton1";
-            iconButton1.Size = new Size(112, 28);
-            iconButton1.TabIndex = 9;
-            iconButton1.Tag = "Fullscreen";
-            iconButton1.Text = "startTime";
-            iconButton1.TextAlign = ContentAlignment.MiddleLeft;
-            iconButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton1.UseVisualStyleBackColor = true;
-            iconButton1.Click += iconButton1_Click;
             // 
             // backgroundbutton
             // 
@@ -348,7 +325,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("경기천년제목 Bold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            label3.Font = new Font("GyeonggiTitle Bold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 129);
             label3.Location = new Point(12, 73);
             label3.Name = "label3";
             label3.Size = new Size(68, 21);
@@ -363,7 +340,7 @@
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Font = new Font("경기천년제목V Bold", 30F, FontStyle.Bold);
+            label1.Font = new Font("GyeonggiTitleV Bold", 30F, FontStyle.Bold);
             label1.Location = new Point(8, 19);
             label1.Name = "label1";
             label1.RightToLeft = RightToLeft.No;
@@ -538,7 +515,7 @@
             ShowInTaskbar = false;
             TopMost = true;
             FormClosed += Form2_FormClosed;
-            Load += Form1_Load;
+            Load += Form2_Load;
             Resize += Form2_Resize;
             panel2.ResumeLayout(false);
             panel4.ResumeLayout(false);
@@ -578,7 +555,6 @@
         private TextBox textBox1;
         private PictureBox pictureBox2;
         private ColorDialog color2;
-        private FontAwesome.Sharp.IconButton iconButton1;
         private FontDialog fontDialog1;
         private Panel panel6;
         private FontAwesome.Sharp.IconButton iconButton3;

@@ -80,18 +80,6 @@
     <Setting Name="form3location" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">5, 5</Value>
     </Setting>
-    <Setting Name="form1label1font" Type="System.Drawing.Font" Scope="User">
-      <Value Profile="(Default)">경기천년제목V Bold, 30pt, style=Bold</Value>
-    </Setting>
-    <Setting Name="form1label3font" Type="System.Drawing.Font" Scope="User">
-      <Value Profile="(Default)">경기천년제목V Bold, 15.75pt, style=Bold</Value>
-    </Setting>
-    <Setting Name="form2label1font" Type="System.Drawing.Font" Scope="User">
-      <Value Profile="(Default)">경기천년제목V Bold, 30pt, style=Bold</Value>
-    </Setting>
-    <Setting Name="form2label3font" Type="System.Drawing.Font" Scope="User">
-      <Value Profile="(Default)">경기천년제목V Bold, 15.75pt, style=Bold</Value>
-    </Setting>
     <Setting Name="opa1" Type="System.Double" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
@@ -112,9 +100,6 @@
     </Setting>
     <Setting Name="label3location2" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">12, 73</Value>
-    </Setting>
-    <Setting Name="form3label1font" Type="System.Drawing.Font" Scope="User">
-      <Value Profile="(Default)">경기천년제목V Bold, 24pt, style=Bold</Value>
     </Setting>
     <Setting Name="track1" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">LightGray</Value>
@@ -157,6 +142,33 @@
     </Setting>
     <Setting Name="label3_2text" Type="System.String" Scope="User">
       <Value Profile="(Default)">Clock</Value>
+    </Setting>
+    <Setting Name="form1label1font" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">GyeonggiTitleV Bold, 30pt, style=Bold</Value>
+    </Setting>
+    <Setting Name="form1label3font" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">GyeonggiTitleV Bold, 15.75pt, style=Bold</Value>
+    </Setting>
+    <Setting Name="form2label1font" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">GyeonggiTitleV Bold, 30pt, style=Bold</Value>
+    </Setting>
+    <Setting Name="form2label3font" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">GyeonggiTitleV Bold, 15.75pt, style=Bold</Value>
+    </Setting>
+    <Setting Name="form3label1font" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">GyeonggiTitleV Bold, 24pt, style=Bold</Value>
+    </Setting>
+    <Setting Name="runauto" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="form2topmost" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="form1topmost" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="form3topmost" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

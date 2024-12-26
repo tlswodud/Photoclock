@@ -41,7 +41,7 @@ namespace clockapp
         bool firststarted_clickth2 = false;
         private Point startPoint;
         private Point startPoint3;
-
+    
         public Form2()
         {   
 
@@ -69,6 +69,8 @@ namespace clockapp
 
             checkclockTimer.Start();
             mousetimer_2.Start();
+            
+            
         }
 
 
@@ -118,6 +120,12 @@ namespace clockapp
 
         protected override void WndProc(ref Message m)
         {
+            const int WM_QUERYENDSESSION = 0x11;
+            if (m.Msg == WM_QUERYENDSESSION)
+            {
+                form2savesetting(); // 설정 저장
+            }
+           
 
             const int RESIZE_HANDLE_SIZE = 50;
 
@@ -176,9 +184,9 @@ namespace clockapp
   int nLeftRect, int nTopRect, int nRightRect, int nBottomRect,
   int nWidthEllipse, int nHeightEllipse);
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form2_Load(object sender, EventArgs e)
         {
-            stopwatch = new Stopwatch();
+           
 
             //둥근 폼 디자인 방법  Load
             var attribute = DWMWINDOWATTRIBUTE.DWMWA_WINDOW_CORNER_PREFERENCE;
@@ -225,7 +233,8 @@ namespace clockapp
 
             iconButton9.BackColor = Properties.Settings.Default.DashButtoncolor2;
             iconButton3.BackColor = Properties.Settings.Default.DashButtoncolor2;
-
+            this.TopMost = Properties.Settings.Default.form1topmost;
+            
             if (Properties.Settings.Default.contextclock == true)//
             {
                 SlidingTimer.Start();
@@ -485,17 +494,18 @@ namespace clockapp
 
         }
 
-
+        
         private void iconButton4_Click_1(object sender, EventArgs e)
-        {
+        {   
             if (this.TopMost == true)
             {
                 this.TopMost = false;
+              
             }
             else
             {
                 this.TopMost = true;
-
+             
             }
         }
 
@@ -842,8 +852,7 @@ namespace clockapp
                 this.WindowState = FormWindowState.Normal;
             }
         }
-
-        private void Form2_FormClosed(object sender, FormClosedEventArgs e)
+        private void form2savesetting()
         {
             Properties.Settings.Default.FormHeight2 = this.Height;
             Properties.Settings.Default.FormWidth2 = this.Width;
@@ -870,6 +879,7 @@ namespace clockapp
             Properties.Settings.Default.DashButtoncolor2 = iconButton9.BackColor;
 
             Properties.Settings.Default.label3_2text = label3.Text;
+            Properties.Settings.Default.form2topmost = this.TopMost;
 
             if (panel1.Width == 37)
             {
@@ -880,6 +890,11 @@ namespace clockapp
                 Properties.Settings.Default.btnshow2 = false;
             }
             Properties.Settings.Default.Save();
+        }
+
+        private void Form2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            form2savesetting();
         }
 
         private void label1_MouseDown(object sender, MouseEventArgs e)

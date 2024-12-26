@@ -16,6 +16,13 @@ using System.Reflection;
 using System.Timers;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
+using System.Drawing;
+using Microsoft.Win32;
+
+//2가지 업데이트 진행//
+//초기 실행 stopwatch는 안뜨게 전환
+//팝창 Ui 전환
+//컴퓨터 키면자동 실행 옵션 
 
 
 namespace clockapp
@@ -36,29 +43,29 @@ namespace clockapp
         string BackgroundfilePath;
         bool vtrack = false;
         bool firststarted_clickth = false;
-      
+
         DateTime dtstop;
         DateTime dtplay;
+
 
         Form2 form2 = new Form2();
         Form3 form3 = new Form3();
 
-      
 
         private Point startPoint;
         bool DoubleClickcheck = false;
         private Point startPoint3;
-
+        
         public Form1()
         {
 
             InitializeComponent();
 
             CheckRunThisProcess();
-           
+
             //trayicon 둥글게 디자인
             contextMenuStrip1.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, contextMenuStrip1.Width, contextMenuStrip1.Height, 25, 25));
-            
+
             //
             mousetimer.Start();
             mousetimer.Interval = 1;
@@ -84,7 +91,7 @@ namespace clockapp
 
             CollapsMenu();
             this.Padding = new Padding(borderSize);
-            // this.BackColor = Color.FromArgb(98, 102, 244); // border 색상
+
             panel5.Visible = false;
             textBox1.Visible = false;
 
@@ -146,6 +153,12 @@ namespace clockapp
         const int HTTRANSPARENT = -1;
         protected override void WndProc(ref Message m)
         {
+            const int WM_QUERYENDSESSION = 0x11;
+            if (m.Msg == WM_QUERYENDSESSION)
+            {
+                form1savesetting(); // 설정 저장
+            }
+           
 
             const int RESIZE_HANDLE_SIZE = 10;
 
@@ -200,6 +213,7 @@ namespace clockapp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             stopwatch = new Stopwatch();
 
             //둥근 폼 디자인 방법
@@ -211,8 +225,8 @@ namespace clockapp
             secondDash.MouseUp += secondDash_MouseClick;
             iconButton9.MouseUp += iconButton9_MouseClick; //마우스 클릭 받기 
 
-            this.Width =  Properties.Settings.Default.FormWidth;
-            this.Height =   Properties.Settings.Default.FormHeight;
+            this.Width = Properties.Settings.Default.FormWidth;
+            this.Height = Properties.Settings.Default.FormHeight;
             BackgroundfilePath = Properties.Settings.Default.backgroundimg;
 
             this.BackColor = Properties.Settings.Default.bordercolor;
@@ -250,6 +264,8 @@ namespace clockapp
             secondDash.BackColor = Properties.Settings.Default.Dashbuttoncolor;
             iconButton9.BackColor = Properties.Settings.Default.Dashbuttoncolor;
 
+            this.TopMost = Properties.Settings.Default.form1topmost;
+
             if (Properties.Settings.Default.statethroghstop == true)
             {
                 firststarted_clickth = true;
@@ -277,10 +293,18 @@ namespace clockapp
             {
                 Clocktoolcheck.CT = 2;
             }
+            if (Properties.Settings.Default.runauto == true)
+            {
+                runToolStripMenuItem.Checked = true;
 
+                RegisterInStartup(true);
+            }
+            else
+            {
+                runToolStripMenuItem.Checked = false;
+                RegisterInStartup(false);
+            }
             
-           
-
 
             if (System.IO.File.Exists(BackgroundfilePath) && BackgroundfilePath != "")
             {
@@ -517,7 +541,6 @@ namespace clockapp
         private void iconButton4_Click(object sender, EventArgs e)
         {
             stopwatch.Stop();
-
         }
 
         private void iconButton3_Click(object sender, EventArgs e)
@@ -551,8 +574,6 @@ namespace clockapp
             this.Opacity = trackBar2.Value * 0.01;
         }
 
-
-
         private void optionbutton_Click(object sender, EventArgs e)
         {
             if (panel5.Visible == true)
@@ -571,7 +592,7 @@ namespace clockapp
 
         private void optionMenucollapso()
         {
-            if (this.panel1.Width == 37)//40
+            if (this.panel1.Width == 37)
             {
                 panel5.Location = new Point(0, 5);
                 panel5.Width = 37;
@@ -970,6 +991,8 @@ namespace clockapp
                 pictureBox2.Image = Bitmap.FromFile(BackgroundfilePath);
 
             }
+            this.label3.Text = filess[1];
+
         }
 
 
@@ -985,14 +1008,13 @@ namespace clockapp
             if (this.TopMost == true)
             {
                 this.TopMost = false;
+              
             }
             else
             {
                 this.TopMost = true;
-
+               
             }
-
-
 
         }
 
@@ -1026,10 +1048,8 @@ namespace clockapp
             }
 
         }
-
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        private void form1savesetting()
         {
-
             notifyIcon1.Dispose();
             Properties.Settings.Default.FormHeight = this.Height;
             Properties.Settings.Default.FormWidth = this.Width;
@@ -1062,8 +1082,10 @@ namespace clockapp
             Properties.Settings.Default.statethroghstop = stopwatchToolStripMenuItem.Checked;
             Properties.Settings.Default.statethroghclock = clockToolStripMenuItem.Checked;
 
-            Properties.Settings.Default.Dashbuttoncolor = secondDash.BackColor;
+            Properties.Settings.Default.runauto = runToolStripMenuItem.Checked;
 
+            Properties.Settings.Default.Dashbuttoncolor = secondDash.BackColor;
+            Properties.Settings.Default.form1topmost = this.TopMost;
             Properties.Settings.Default.lable3_1text = label3.Text;
 
             if (panel1.Width == 37)
@@ -1076,9 +1098,11 @@ namespace clockapp
             }
 
 
-
             Properties.Settings.Default.Save();
-
+        }
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            form1savesetting();
         }
 
         private void label1_MouseDown(object sender, MouseEventArgs e)
@@ -1258,6 +1282,7 @@ namespace clockapp
                     slidingTimer.Stop();
                 }
 
+
             }
             else
             {
@@ -1270,6 +1295,9 @@ namespace clockapp
 
             }
             panel2.Height = _posSliding;
+
+
+
         }
 
         private void stopwatchToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -1322,6 +1350,7 @@ namespace clockapp
             contextMenuStrip1.Visible = true;
         }
 
+
         //form1 panel6;
         private void mousetimer_Tick(object sender, EventArgs e) //마우스가 폼안에 있나 밖에 있나에 따라 페널을 없엠
         {
@@ -1337,7 +1366,7 @@ namespace clockapp
             if (Properties.Settings.Default.statethroghstop == true && firststarted_clickth == true)
             {
                 firststarted_clickth = false;
-                ClickThrough(); 
+                ClickThrough();
             }
 
 
@@ -1420,6 +1449,55 @@ namespace clockapp
         {
             Application.Exit();
         }
-    }
 
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        
+        // auto run추가
+
+        private void runToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (runToolStripMenuItem.Checked == false)
+            {
+                runToolStripMenuItem.Checked = true;
+                // 체크되어 있지 않으면 자동 실행 설정
+                RegisterInStartup(true);
+            }
+            else
+            {
+                runToolStripMenuItem.Checked = false;
+                // 체크되어 있으면 자동 실행 해제
+                RegisterInStartup(false);
+            }
+            contextMenuStrip1.Visible = false;
+            Properties.Settings.Default.runauto = runToolStripMenuItem.Checked;
+        }
+        private void RegisterInStartup(bool enable)
+        {
+            string appName = "Photoclock"; // 애플리케이션 이름
+            string appPath = Application.ExecutablePath; // 실행 파일 경로
+
+            // 시작 프로그램 관련 레지스트리 키 열기
+            RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+
+            if (enable)
+            {
+                // 프로그램을 시작 프로그램에 추가
+                regKey.SetValue(appName, $"\"{appPath}\"");
+               
+            }
+            else
+            {
+                // 프로그램을 시작 프로그램에서 제거
+                if (regKey.GetValue(appName) != null)
+                {
+                    regKey.DeleteValue(appName);
+                   
+                }
+            }
+        }
+    }
 }

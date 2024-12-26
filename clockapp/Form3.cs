@@ -126,6 +126,11 @@ namespace calendar
         protected override void WndProc(ref Message m)
         {
 
+            const int WM_QUERYENDSESSION = 0x11;
+            if (m.Msg == WM_QUERYENDSESSION)
+            {
+                form3savesetting(); // 설정 저장
+            }
 
             const int RESIZE_HANDLE_SIZE = 50;
 
@@ -692,8 +697,7 @@ namespace calendar
             }
 
         }
-
-        private void Form3_FormClosed(object sender, FormClosedEventArgs e)
+        private void form3savesetting()
         {
             if (pictureBox2.Image == null)
             {
@@ -708,11 +712,14 @@ namespace calendar
             clockapp.Properties.Settings.Default.form3label1font = label1.Font;
             clockapp.Properties.Settings.Default.Dashbuttoncolor3 = iconButton9.BackColor;
 
-
+            clockapp.Properties.Settings.Default.form3topmost = this.TopMost;
             clockapp.Properties.Settings.Default.track3 = trackBar2.BackColor;
 
             clockapp.Properties.Settings.Default.Save();
-
+        }
+        private void Form3_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            form3savesetting();
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -732,6 +739,7 @@ namespace calendar
             iconButton9.BackColor = clockapp.Properties.Settings.Default.Dashbuttoncolor3;
             trackBar2.BackColor = clockapp.Properties.Settings.Default.track3;
 
+            this.TopMost = clockapp.Properties.Settings.Default.form3topmost;
 
             foreach (Button bordermenu in this.panel3.Controls.OfType<Button>())
             {

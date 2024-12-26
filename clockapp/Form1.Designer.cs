@@ -66,6 +66,7 @@
             notifyIcon1 = new NotifyIcon(components);
             contextMenuStrip1 = new ContextMenuStrip(components);
             exitPhotoclockToolStripMenuItem = new ToolStripMenuItem();
+            runToolStripMenuItem = new ToolStripMenuItem();
             clickThroughToolStripMenuItem = new ToolStripMenuItem();
             stopwatchToolStripMenuItem = new ToolStripMenuItem();
             clockToolStripMenuItem = new ToolStripMenuItem();
@@ -114,7 +115,7 @@
             iconButton9.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButton9.Location = new Point(8, 6);
             iconButton9.Name = "iconButton9";
-            iconButton9.Size = new Size(95, 23);
+            iconButton9.Size = new Size(90, 23);
             iconButton9.TabIndex = 3;
             iconButton9.TabStop = false;
             iconButton9.Text = "DASHBOARD";
@@ -187,9 +188,9 @@
             secondDash.IconChar = FontAwesome.Sharp.IconChar.None;
             secondDash.IconColor = Color.Black;
             secondDash.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            secondDash.Location = new Point(4, 4);
+            secondDash.Location = new Point(6, 5);
             secondDash.Name = "secondDash";
-            secondDash.Size = new Size(95, 23);
+            secondDash.Size = new Size(90, 23);
             secondDash.TabIndex = 3;
             secondDash.TabStop = false;
             secondDash.Text = "DASHBOARD";
@@ -356,7 +357,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("경기천년제목V Bold", 21.75F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 129);
+            label4.Font = new Font("GyeonggiTitleV Bold", 21.75F, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point, 129);
             label4.ImageAlign = ContentAlignment.TopRight;
             label4.Location = new Point(117, 74);
             label4.Name = "label4";
@@ -369,7 +370,7 @@
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Font = new Font("경기천년제목V Bold", 30F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            label1.Font = new Font("GyeonggiTitleV Bold", 30F, FontStyle.Bold, GraphicsUnit.Point, 129);
             label1.Location = new Point(8, 19);
             label1.Name = "label1";
             label1.RightToLeft = RightToLeft.No;
@@ -383,7 +384,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("경기천년제목 Bold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            label3.Font = new Font("GyeonggiTitle Bold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 129);
             label3.Location = new Point(12, 73);
             label3.Name = "label3";
             label3.Size = new Size(119, 21);
@@ -528,7 +529,7 @@
             // 
             btnmenu.FlatAppearance.BorderSize = 0;
             btnmenu.FlatStyle = FlatStyle.Flat;
-            btnmenu.Font = new Font("경기천년제목 Light", 9.75F);
+            btnmenu.Font = new Font("GyeonggiTitle Light", 9.75F);
             btnmenu.IconChar = FontAwesome.Sharp.IconChar.BarChart;
             btnmenu.IconColor = Color.Black;
             btnmenu.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -582,78 +583,91 @@
             // 
             contextMenuStrip1.BackColor = Color.Lavender;
             contextMenuStrip1.ImeMode = ImeMode.NoControl;
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { exitPhotoclockToolStripMenuItem, clickThroughToolStripMenuItem, stopwatchToolStripMenuItem, clockToolStripMenuItem, titlebarhiddenToolStripMenuItem, stopwatchToolStripMenuItem1, clockToolStripMenuItem1 });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { exitPhotoclockToolStripMenuItem, runToolStripMenuItem, clickThroughToolStripMenuItem, stopwatchToolStripMenuItem, clockToolStripMenuItem, titlebarhiddenToolStripMenuItem, stopwatchToolStripMenuItem1, clockToolStripMenuItem1 });
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.ShowCheckMargin = true;
             contextMenuStrip1.ShowImageMargin = false;
-            contextMenuStrip1.Size = new Size(195, 176);
+            contextMenuStrip1.Size = new Size(184, 184);
             // 
             // exitPhotoclockToolStripMenuItem
             // 
             exitPhotoclockToolStripMenuItem.BackColor = Color.MistyRose;
-            exitPhotoclockToolStripMenuItem.Font = new Font("경기천년제목V Bold", 11.25F, FontStyle.Bold);
+            exitPhotoclockToolStripMenuItem.Font = new Font("GyeonggiTitleV Bold", 10.25F, FontStyle.Bold);
             exitPhotoclockToolStripMenuItem.Name = "exitPhotoclockToolStripMenuItem";
-            exitPhotoclockToolStripMenuItem.Size = new Size(194, 24);
+            exitPhotoclockToolStripMenuItem.Size = new Size(183, 22);
             exitPhotoclockToolStripMenuItem.Text = "Exit Photoclock";
             exitPhotoclockToolStripMenuItem.Click += exitPhotoclockToolStripMenuItem_Click;
             // 
+            // runToolStripMenuItem
+            // 
+            runToolStripMenuItem.BackColor = Color.Beige;
+            runToolStripMenuItem.Font = new Font("GyeonggiTitleV Bold", 10.25F, FontStyle.Bold);
+            runToolStripMenuItem.Name = "runToolStripMenuItem";
+            runToolStripMenuItem.Size = new Size(183, 22);
+            runToolStripMenuItem.Text = "Run at Startup";
+            runToolStripMenuItem.Click += runToolStripMenuItem_Click;
+            // 
             // clickThroughToolStripMenuItem
             // 
-            clickThroughToolStripMenuItem.Font = new Font("경기천년제목V Bold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            clickThroughToolStripMenuItem.BackColor = Color.Azure;
+            clickThroughToolStripMenuItem.Font = new Font("GyeonggiTitleV Bold", 10.25F, FontStyle.Bold);
             clickThroughToolStripMenuItem.Name = "clickThroughToolStripMenuItem";
-            clickThroughToolStripMenuItem.Size = new Size(194, 24);
+            clickThroughToolStripMenuItem.Size = new Size(183, 22);
             clickThroughToolStripMenuItem.Text = "Click_Through";
             clickThroughToolStripMenuItem.Click += clickThroughToolStripMenuItem_Click;
             // 
             // stopwatchToolStripMenuItem
             // 
-            stopwatchToolStripMenuItem.BackColor = Color.MintCream;
+            stopwatchToolStripMenuItem.BackColor = Color.White;
             stopwatchToolStripMenuItem.CheckOnClick = true;
             stopwatchToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            stopwatchToolStripMenuItem.Font = new Font("경기천년제목 Medium", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            stopwatchToolStripMenuItem.Font = new Font("GyeonggiTitle Medium", 9.25F, FontStyle.Bold);
             stopwatchToolStripMenuItem.ImageTransparentColor = Color.FromArgb(255, 192, 192);
             stopwatchToolStripMenuItem.Margin = new Padding(1);
             stopwatchToolStripMenuItem.Name = "stopwatchToolStripMenuItem";
             stopwatchToolStripMenuItem.Padding = new Padding(1);
-            stopwatchToolStripMenuItem.Size = new Size(196, 24);
+            stopwatchToolStripMenuItem.Size = new Size(185, 22);
             stopwatchToolStripMenuItem.Text = "Stopwatch";
             stopwatchToolStripMenuItem.Click += stopwatchToolStripMenuItem_Click;
             // 
             // clockToolStripMenuItem
             // 
-            clockToolStripMenuItem.BackColor = Color.MintCream;
+            clockToolStripMenuItem.BackColor = Color.White;
             clockToolStripMenuItem.CheckOnClick = true;
-            clockToolStripMenuItem.Font = new Font("경기천년제목 Medium", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            clockToolStripMenuItem.Font = new Font("GyeonggiTitle Medium", 9.25F, FontStyle.Bold);
             clockToolStripMenuItem.Margin = new Padding(1);
             clockToolStripMenuItem.Name = "clockToolStripMenuItem";
             clockToolStripMenuItem.Padding = new Padding(1);
-            clockToolStripMenuItem.Size = new Size(196, 24);
+            clockToolStripMenuItem.Size = new Size(185, 22);
             clockToolStripMenuItem.Text = "Clock";
             clockToolStripMenuItem.Click += clockToolStripMenuItem_Click;
             // 
             // titlebarhiddenToolStripMenuItem
             // 
-            titlebarhiddenToolStripMenuItem.Font = new Font("경기천년제목V Bold", 11.25F, FontStyle.Bold);
+            titlebarhiddenToolStripMenuItem.BackColor = Color.Azure;
+            titlebarhiddenToolStripMenuItem.Font = new Font("GyeonggiTitleV Bold", 10.25F, FontStyle.Bold);
             titlebarhiddenToolStripMenuItem.Name = "titlebarhiddenToolStripMenuItem";
-            titlebarhiddenToolStripMenuItem.Size = new Size(194, 24);
+            titlebarhiddenToolStripMenuItem.Size = new Size(183, 22);
             titlebarhiddenToolStripMenuItem.Text = "Titlebar_hidden";
             titlebarhiddenToolStripMenuItem.Click += titlebarhiddenToolStripMenuItem_Click;
             // 
             // stopwatchToolStripMenuItem1
             // 
-            stopwatchToolStripMenuItem1.BackColor = Color.MintCream;
-            stopwatchToolStripMenuItem1.Font = new Font("경기천년제목 Medium", 14.25F, FontStyle.Bold);
+            stopwatchToolStripMenuItem1.BackColor = Color.White;
+            stopwatchToolStripMenuItem1.DoubleClickEnabled = true;
+            stopwatchToolStripMenuItem1.Font = new Font("GyeonggiTitle Medium", 9.25F, FontStyle.Bold);
             stopwatchToolStripMenuItem1.Name = "stopwatchToolStripMenuItem1";
-            stopwatchToolStripMenuItem1.Size = new Size(194, 24);
+            stopwatchToolStripMenuItem1.Size = new Size(183, 22);
             stopwatchToolStripMenuItem1.Text = "Stopwatch";
             stopwatchToolStripMenuItem1.Click += stopwatchToolStripMenuItem1_Click;
             // 
             // clockToolStripMenuItem1
             // 
-            clockToolStripMenuItem1.BackColor = Color.MintCream;
-            clockToolStripMenuItem1.Font = new Font("경기천년제목 Medium", 14.25F, FontStyle.Bold);
+            clockToolStripMenuItem1.BackColor = Color.White;
+            clockToolStripMenuItem1.DoubleClickEnabled = true;
+            clockToolStripMenuItem1.Font = new Font("GyeonggiTitle Medium", 9.25F, FontStyle.Bold);
             clockToolStripMenuItem1.Name = "clockToolStripMenuItem1";
-            clockToolStripMenuItem1.Size = new Size(194, 24);
+            clockToolStripMenuItem1.Size = new Size(183, 22);
             clockToolStripMenuItem1.Text = "Clock";
             clockToolStripMenuItem1.Click += clockToolStripMenuItem1_Click;
             // 
@@ -688,6 +702,7 @@
             TopMost = true;
             FormClosed += Form1_FormClosed;
             Load += Form1_Load;
+            Shown += Form1_Shown;
             Resize += Form1_Resize;
             panel2.ResumeLayout(false);
             panel4.ResumeLayout(false);
@@ -737,7 +752,6 @@
         private NotifyIcon notifyIcon1;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem stopwatchToolStripMenuItem;
-        private ToolStripMenuItem clockToolStripMenuItem;
         private ToolStripMenuItem clickThroughToolStripMenuItem;
         private System.Windows.Forms.Timer slidingTimer;
         private ToolStripMenuItem titlebarhiddenToolStripMenuItem;
@@ -751,5 +765,7 @@
         private FontAwesome.Sharp.IconButton secondDash;
         private FontAwesome.Sharp.IconButton secondExit;
         private ToolStripMenuItem exitPhotoclockToolStripMenuItem;
+        private ToolStripMenuItem clockToolStripMenuItem;
+        private ToolStripMenuItem runToolStripMenuItem;
     }
 }
