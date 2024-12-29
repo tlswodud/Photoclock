@@ -195,6 +195,7 @@
             secondDash.TabStop = false;
             secondDash.Text = "DASHBOARD";
             secondDash.UseVisualStyleBackColor = false;
+            
             secondDash.MouseClick += secondDash_MouseClick;
             // 
             // secondExit
@@ -578,6 +579,7 @@
             notifyIcon1.Icon = (Icon)resources.GetObject("notifyIcon1.Icon");
             notifyIcon1.Text = "Photoclock";
             notifyIcon1.Visible = true;
+           
             // 
             // contextMenuStrip1
             // 

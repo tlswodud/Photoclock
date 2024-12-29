@@ -253,7 +253,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("경기천년제목 Medium", 24.75F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            label3.Font = new Font("GyeonggiTitle Medium", 24.75F, FontStyle.Bold, GraphicsUnit.Point, 129);
             label3.Location = new Point(32, 145);
             label3.Name = "label3";
             label3.Size = new Size(0, 33);
@@ -288,7 +288,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("경기천년제목 Bold", 9F, FontStyle.Bold | FontStyle.Underline);
+            label6.Font = new Font("GyeonggiTitle Bold", 9F, FontStyle.Bold | FontStyle.Underline);
             label6.Location = new Point(234, 69);
             label6.Name = "label6";
             label6.Size = new Size(46, 12);
@@ -298,7 +298,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("경기천년제목 Bold", 9F, FontStyle.Bold | FontStyle.Underline);
+            label5.Font = new Font("GyeonggiTitle Bold", 9F, FontStyle.Bold | FontStyle.Underline);
             label5.Location = new Point(128, 69);
             label5.Name = "label5";
             label5.Size = new Size(75, 12);
@@ -308,7 +308,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("경기천년제목 Bold", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 129);
+            label2.Font = new Font("GyeonggiTitle Bold", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 129);
             label2.Location = new Point(30, 69);
             label2.Name = "label2";
             label2.Size = new Size(78, 12);
@@ -318,7 +318,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("경기천년제목 Light", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 129);
+            label4.Font = new Font("GyeonggiTitle Light", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 129);
             label4.Location = new Point(11, 105);
             label4.Name = "label4";
             label4.Size = new Size(183, 19);
@@ -329,7 +329,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("경기천년제목V Bold", 24F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            label1.Font = new Font("GyeonggiTitleV Bold", 24F, FontStyle.Bold, GraphicsUnit.Point, 129);
             label1.Location = new Point(13, 23);
             label1.Name = "label1";
             label1.Size = new Size(111, 32);
@@ -436,7 +436,7 @@
             // 
             btnmenu.FlatAppearance.BorderSize = 0;
             btnmenu.FlatStyle = FlatStyle.Flat;
-            btnmenu.Font = new Font("경기천년제목 Light", 9.75F);
+            btnmenu.Font = new Font("GyeonggiTitle Light", 9.75F);
             btnmenu.IconChar = FontAwesome.Sharp.IconChar.BarChart;
             btnmenu.IconColor = Color.Black;
             btnmenu.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -491,6 +491,7 @@
             TopMost = true;
             FormClosed += Form3_FormClosed;
             Load += Form3_Load;
+            Shown += Form3_Shown;
             Resize += Form1_Resize;
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)trackBar2).EndInit();

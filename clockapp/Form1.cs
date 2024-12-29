@@ -18,6 +18,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Drawing;
 using Microsoft.Win32;
+using System.Runtime.CompilerServices;
+
 
 //2가지 업데이트 진행//
 //초기 실행 stopwatch는 안뜨게 전환
@@ -29,7 +31,7 @@ namespace clockapp
 {
     public partial class Form1 : Form
     {
-
+        
         private Stopwatch stopwatch;
         private Size formSize;
         private int borderSize = 6;
@@ -48,20 +50,22 @@ namespace clockapp
         DateTime dtplay;
 
 
+
         Form2 form2 = new Form2();
         Form3 form3 = new Form3();
-
 
         private Point startPoint;
         bool DoubleClickcheck = false;
         private Point startPoint3;
-        
+
         public Form1()
         {
+            
 
             InitializeComponent();
 
             CheckRunThisProcess();
+
 
             //trayicon 둥글게 디자인
             contextMenuStrip1.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, contextMenuStrip1.Width, contextMenuStrip1.Height, 25, 25));
@@ -82,12 +86,12 @@ namespace clockapp
             // textbox3.Visible = false;
             label4.Visible = false;
 
-
             form3.Show();
             form3.Visible = false;
 
 
             this.TopMost = true;
+
 
             CollapsMenu();
             this.Padding = new Padding(borderSize);
@@ -96,7 +100,9 @@ namespace clockapp
             textBox1.Visible = false;
 
 
+
         }
+       
         private bool CheckRunThisProcess()
         {
             bool rslt = false;
@@ -158,7 +164,7 @@ namespace clockapp
             {
                 form1savesetting(); // 설정 저장
             }
-           
+
 
             const int RESIZE_HANDLE_SIZE = 10;
 
@@ -213,6 +219,9 @@ namespace clockapp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            WindowState = FormWindowState.Minimized; 
+            Opacity = 0;
+        
 
             stopwatch = new Stopwatch();
 
@@ -253,7 +262,7 @@ namespace clockapp
             label3.Font = Properties.Settings.Default.form1label3font;
             label3.Text = Properties.Settings.Default.lable3_1text;
 
-            this.Opacity = Properties.Settings.Default.opa1;
+            
 
             label1.Location = Properties.Settings.Default.label1location;
             label3.Location = Properties.Settings.Default.label3location;
@@ -304,7 +313,7 @@ namespace clockapp
                 runToolStripMenuItem.Checked = false;
                 RegisterInStartup(false);
             }
-            
+
 
             if (System.IO.File.Exists(BackgroundfilePath) && BackgroundfilePath != "")
             {
@@ -349,7 +358,8 @@ namespace clockapp
             form2.Show();
             form2.Visible = true; // form1 생성이 끝나고 난후 form 2 생성 작업표시줄에 안뜨는 오류
 
-
+            
+       
         }
         //윈도우 API DWM  둥글게 디자인 하는 API 
         public enum DWMWINDOWATTRIBUTE
@@ -1008,12 +1018,12 @@ namespace clockapp
             if (this.TopMost == true)
             {
                 this.TopMost = false;
-              
+
             }
             else
             {
                 this.TopMost = true;
-               
+
             }
 
         }
@@ -1452,10 +1462,13 @@ namespace clockapp
 
         private void Form1_Shown(object sender, EventArgs e)
         {
+            WindowState = FormWindowState.Normal;
+            this.Opacity = Properties.Settings.Default.opa1;
+
             this.Hide();
         }
 
-        
+
         // auto run추가
 
         private void runToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1475,10 +1488,12 @@ namespace clockapp
             contextMenuStrip1.Visible = false;
             Properties.Settings.Default.runauto = runToolStripMenuItem.Checked;
         }
+       
         private void RegisterInStartup(bool enable)
         {
             string appName = "Photoclock"; // 애플리케이션 이름
-            string appPath = Application.ExecutablePath; // 실행 파일 경로
+            //string appPath = Application.ExecutablePath; // 실행 파일 경로
+            string appPath = Assembly.GetExecutingAssembly().Location;
 
             // 시작 프로그램 관련 레지스트리 키 열기
             RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
@@ -1487,7 +1502,7 @@ namespace clockapp
             {
                 // 프로그램을 시작 프로그램에 추가
                 regKey.SetValue(appName, $"\"{appPath}\"");
-               
+
             }
             else
             {
@@ -1495,9 +1510,14 @@ namespace clockapp
                 if (regKey.GetValue(appName) != null)
                 {
                     regKey.DeleteValue(appName);
-                   
+
                 }
             }
+
         }
+
+
+
+
     }
 }

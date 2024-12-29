@@ -50,6 +50,7 @@ namespace calendar
             //µÕ±Ù Æû µðÀÚÀÎ ¹æ¹ý
 
 
+            this.TopMost = true;
 
             label1.BackColor = Color.Transparent;
             label3.BackColor = Color.Transparent;
@@ -62,7 +63,7 @@ namespace calendar
 
             //monthCalendar1.SelectionEnd = DateTime.Now;
 
-            this.TopMost = true;
+
             // trackBar2.BackColor = Color.Transparent;
             CollapsMenu();
             this.Padding = new Padding(borderSize);
@@ -176,7 +177,7 @@ namespace calendar
             base.WndProc(ref m);
         }
 
-      
+
         private void Form1_Resize(object sender, EventArgs e)
         {
             AdjustForm();
@@ -348,7 +349,7 @@ namespace calendar
             else
             {
                 monthCalendar1.Visible = true;
-              
+
                 panel6.Location = new Point(19, 203);
                 panel6.Size = new Size(334, 220);
             }
@@ -714,6 +715,7 @@ namespace calendar
 
             clockapp.Properties.Settings.Default.form3topmost = this.TopMost;
             clockapp.Properties.Settings.Default.track3 = trackBar2.BackColor;
+            clockapp.Properties.Settings.Default.opa3 = this.Opacity;
 
             clockapp.Properties.Settings.Default.Save();
         }
@@ -723,7 +725,11 @@ namespace calendar
         }
 
         private void Form3_Load(object sender, EventArgs e)
-        {
+        {   // ÃÊ±â ÀÜ»ó ¾Èº¸ÀÌ°Ô²û
+           
+            Opacity = 0;
+            //ÃÊ±â ÀÜ»ó ¾Èº¸ÀÌ°Ô²û
+
 
             BackgroundfilePath = clockapp.Properties.Settings.Default.backgroundimg3;
 
@@ -739,6 +745,7 @@ namespace calendar
             iconButton9.BackColor = clockapp.Properties.Settings.Default.Dashbuttoncolor3;
             trackBar2.BackColor = clockapp.Properties.Settings.Default.track3;
 
+            
             this.TopMost = clockapp.Properties.Settings.Default.form3topmost;
 
             foreach (Button bordermenu in this.panel3.Controls.OfType<Button>())
@@ -758,9 +765,13 @@ namespace calendar
                 pictureBox2.Image = Bitmap.FromFile(BackgroundfilePath);
             }
 
-
-
-
+        }
+        private void Form3_Shown(object sender, EventArgs e)
+        {
+            
+            this.Opacity = clockapp.Properties.Settings.Default.opa3;
+            
+            this.Hide();
         }
 
         private void initial_button_Click(object sender, EventArgs e)
@@ -830,6 +841,8 @@ namespace calendar
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
+
+        
     }
 }
 

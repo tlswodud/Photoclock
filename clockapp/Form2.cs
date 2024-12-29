@@ -59,7 +59,7 @@ namespace clockapp
 
             label1.BackColor = Color.Transparent;
             label3.BackColor = Color.Transparent;
-            this.TopMost = true;
+            
             // trackBar2.BackColor = Color.Transparent;
             textBox1.Visible = false;
             CollapsMenu();
@@ -69,7 +69,7 @@ namespace clockapp
 
             checkclockTimer.Start();
             mousetimer_2.Start();
-            
+            this.TopMost = true;
             
         }
 
@@ -233,7 +233,7 @@ namespace clockapp
 
             iconButton9.BackColor = Properties.Settings.Default.DashButtoncolor2;
             iconButton3.BackColor = Properties.Settings.Default.DashButtoncolor2;
-            this.TopMost = Properties.Settings.Default.form1topmost;
+            this.TopMost = Properties.Settings.Default.form2topmost;
             
             if (Properties.Settings.Default.contextclock == true)//
             {
